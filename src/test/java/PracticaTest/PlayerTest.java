@@ -1,6 +1,7 @@
 package PracticaTest;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -19,6 +20,7 @@ public class PlayerTest {
 
 	@Test
 	public void testPlayerInt() {
+		
 		int mines = 40;
 		
 		Player plyrTest = new Player(mines);
@@ -46,10 +48,11 @@ public class PlayerTest {
 		
 		Player plyrTest = new Player();
 		
-		assertTrue(plyrTest.decreaseFlagNum(40)==40);
-		assertTrue(plyrTest.decreaseFlagNum(0)==1);
+		assertTrue(plyrTest.increaseFlagNum(40)==40);
+		assertTrue(plyrTest.increaseFlagNum(0)==1);
 		
-		assertFalse(plyrTest.decreaseFlagNum(40)==41);
+		assertFalse(plyrTest.increaseFlagNum(0)==0);
+		assertFalse(plyrTest.increaseFlagNum(40)==41);
 		
 	}
 
@@ -58,9 +61,24 @@ public class PlayerTest {
 		
 		Player plyrTest = new Player();
 		
+		plyrTest.setScore(500);
+		
 		assertTrue(plyrTest.increaseScore(40)==400);
+		
+		
+		assertTrue(plyrTest.getScore()==900);
+		
+		plyrTest.setScore(500);
+		
 		assertTrue(plyrTest.increaseScore(10)==100);
-		assertFalse(plyrTest.increaseScore(-50)==0);
+		assertTrue(plyrTest.getScore()==600);
+		
+		plyrTest.setScore(500);
+		
+		assertTrue(plyrTest.increaseScore(-50)==0);
+		assertTrue(plyrTest.getScore()==500);
+		
+		assertFalse(plyrTest.increaseScore(-50)==-500);
 		
 		
 	}
