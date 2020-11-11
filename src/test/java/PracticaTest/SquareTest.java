@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class SquareTest {
-	@Test
+	@Test //Test the getters and setters of state square
 	public void testSquareState() {
 		Square squareTest = new Square();
 		for(int i=1; i<=3; i++) {
@@ -13,7 +13,7 @@ public class SquareTest {
 		}
 	}
 
-	@Test
+	@Test //Test setters and getters of mine
 	public void testSquareMine() {
 		Square squareTest = new Square();
 		assertTrue(false==squareTest.isMine());
@@ -21,7 +21,7 @@ public class SquareTest {
 		assertTrue(true==squareTest.isMine());
 	}
 
-	@Test
+	@Test //Test the calculation of adjacency mines
 	public void testSquareAdjacent() {
 		Square squareTest = new Square();
 		//squareTest.getAdjacent();
