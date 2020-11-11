@@ -1,5 +1,6 @@
 package PracticaTest;
 import org.junit.Test;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -11,6 +12,11 @@ public class SquareTest {
 			squareTest.setState(i);
 			assertTrue(i==squareTest.getState());
 		}
+		squareTest.setState(-500);
+		squareTest.setState(500);
+		squareTest.setState(0);
+		squareTest.setState(4);
+		assertTrue(3==squareTest.getState());
 	}
 
 	@Test //Test setters and getters of mine
