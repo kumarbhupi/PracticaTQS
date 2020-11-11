@@ -6,11 +6,82 @@ import org.junit.Test;
 
 public class BoardVisualsTest {
 
+	String errorStr = "--PRINT ERROR. FILA DEMASIADO CORTA (MENOR QUE 1)--";
+	
 	@Test
 	public void testDrawBoard() {
-		fail("Not yet implemented");
+
+		int[][] testArray ={{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2},
+							{-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2}};
+		
+		String testStr =  "    │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10│ 11│ 12│ 13│ 14│ 15│ 16│ 17│ 18│\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ "  1 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ "  2 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ "  3 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ "  4 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ "  5 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ "  6 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ "  8 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ "  9 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ " 10 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ " 11 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ " 12 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ " 13 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+						+ " 14 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘";
+		
+		
+		BoardVisuals BoardView = new BoardVisuals();
+		
+		assertTrue(BoardView.DrawBoard(testArray).equals(testStr));
+		
+		int[][] testArray1 ={{},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {},
+							 {}};
+		
+		int[][] testArray2 ={};
+		
+		assertTrue(BoardView.DrawBoard(testArray1).equals(errorStr));
+
+		assertTrue(BoardView.DrawBoard(testArray2).equals(errorStr));
+		
 	}
-	
 	
 	//////////////REDIMENSION TESTCASES//////////////
 	
@@ -18,23 +89,29 @@ public class BoardVisualsTest {
 	public void testResizingPrintUpper() {
 		BoardVisuals BoardView = new BoardVisuals();
 		
-		int[] aja = {-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2};
+		int[] testRowArray = {-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2};
 		
-		String upperStr =      "   │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10│ 11│ 12│ 13│ 14│ 15│ 16│ 17│ 18│\r\n"
-							 + "───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
-							 + " 1 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │";
-				
-		assertTrue(BoardView.ProxyPrintUpperRow(aja).equals(upperStr));
+		String upperStr =      "    │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10│ 11│ 12│ 13│ 14│ 15│ 16│ 17│ 18│\r\n"
+							 + " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+							 + "  1 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │";
+	
+		
+		assertTrue(BoardView.ProxyPrintUpperRow(testRowArray).equals(upperStr));
 		
 		
-		int[] aja2 = {-2,-2};
+		int[] testRowArray2 = {-2,-2};
 		
-		 upperStr = "   │ 1 │ 2 │\r\n"
-				 +  "───┼───┼───┤\r\n"
-				 +  " 1 │ █ │ █ │";
+		 upperStr = "    │ 1 │ 2 │\r\n"
+				 +  " ───┼───┼───┤\r\n"
+				 +  "  1 │ █ │ █ │";
 		 
-		 assertTrue(BoardView.ProxyPrintUpperRow(aja2).equals(upperStr));
+		 assertTrue(BoardView.ProxyPrintUpperRow(testRowArray2).equals(upperStr));
 		
+		 int[] testRowArray0 = {};
+		 
+		 assertTrue(BoardView.ProxyPrintUpperRow(testRowArray0).equals(errorStr));
+		 assertTrue(BoardView.ProxyPrintUpperRow(null).equals(errorStr));
+		 
 	}
 	
 	
@@ -44,22 +121,27 @@ public class BoardVisualsTest {
 		
 		BoardVisuals BoardView = new BoardVisuals();
 		
-		int[] aja = {-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2};
+		int[] testRowArray = {-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2};
 		
-		String centralStr =   "───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
-							+ "10 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
-							+ "───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤";
+		String centralStr =   " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
+							+ " 10 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+							+ " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤";
 		
-		assertTrue(BoardView.ProxyPrintCentralRow(aja, 10).equals(centralStr));
+		assertTrue(BoardView.ProxyPrintCentralRow(testRowArray, 10).equals(centralStr));
 		
-		int[] aja2 = {-2,-2};
+		int[] testRowArray2 = {-2,-2};
 		
-		centralStr =  "───┼───┼───┤\r\n"
-					+ "10 │ █ │ █ │\r\n"
-					+ "───┼───┼───┤";
+		centralStr =  " ───┼───┼───┤\r\n"
+					+ " 10 │ █ │ █ │\r\n"
+					+ " ───┼───┼───┤";
 		 
-		 assertTrue(BoardView.ProxyPrintCentralRow(aja2, 10).equals(centralStr));
+		 assertTrue(BoardView.ProxyPrintCentralRow(testRowArray2, 10).equals(centralStr));
 		
+		 int[] testRowArray0 = {};
+		 
+		 assertTrue(BoardView.ProxyPrintCentralRow(testRowArray0, 10).equals(errorStr));
+		 assertTrue(BoardView.ProxyPrintCentralRow(null, 0).equals(errorStr));
+		 
 	}
 
 	@Test
@@ -68,21 +150,25 @@ public class BoardVisualsTest {
 		
 		BoardVisuals BoardView = new BoardVisuals();
 		
-		int[] aja = {-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2};
+		int[] testRowArray = {-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2};
 		
-		String lowerStr = "14 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
-						+ "───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘";
+		String lowerStr = " 14 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
+						+ " ───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘";
 		
-		assertTrue(BoardView.ProxyPrintLowerRow(aja, 14).equals(lowerStr));
+		assertTrue(BoardView.ProxyPrintLowerRow(testRowArray, 14).equals(lowerStr));
 		
 				
-		int[] aja2 = {-2,-2};
+		int[] testRowArray2 = {-2,-2};
 				
-		lowerStr = "14 │ █ │ █ │\r\n"
-				 + "───┴───┴───┘";
+		lowerStr = " 14 │ █ │ █ │\r\n"
+				 + " ───┴───┴───┘";
 		 
-		 assertTrue(BoardView.ProxyPrintLowerRow(aja2, 14).equals(lowerStr));
-		
+		 assertTrue(BoardView.ProxyPrintLowerRow(testRowArray2, 14).equals(lowerStr));
+		 
+		 int[] testRowArray0 = {};
+		 
+		 assertTrue(BoardView.ProxyPrintLowerRow(testRowArray0, 10).equals(errorStr));
+		 assertTrue(BoardView.ProxyPrintLowerRow(null, 0).equals(errorStr));
 		
 	}
 	
@@ -97,13 +183,13 @@ public class BoardVisualsTest {
 	public void testPrintUpperRow() {
 	BoardVisuals BoardView = new BoardVisuals();
 	
-	int[] aja = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	int[] testRowArray = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	
-	String upperStr =   "		│ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10│ 11│ 12│ 13│ 14│ 15│ 16│ 17│ 18│\r\n"
+	String upperStr =      "    │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 10│ 11│ 12│ 13│ 14│ 15│ 16│ 17│ 18│\r\n"
 						 + " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
 						 + "  1 │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │";
 	
-	assertTrue(BoardView.ProxyPrintUpperRow(aja).equals(upperStr));
+	assertTrue(BoardView.ProxyPrintUpperRow(testRowArray).equals(upperStr));
 	
 	}
 	
@@ -115,13 +201,13 @@ public class BoardVisualsTest {
 	
 	String centralStr;
 	
-	int[] aja = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+	int[] testRowArray = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	
 	centralStr =   " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤\r\n"
 				 + " 10 │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │\r\n"
 				 + " ───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤";
 	
-	assertTrue(BoardView.ProxyPrintCentralRow(aja, 10).equals(centralStr));
+	assertTrue(BoardView.ProxyPrintCentralRow(testRowArray, 10).equals(centralStr));
 	
 	}
 	
@@ -130,14 +216,16 @@ public class BoardVisualsTest {
 		BoardVisuals BoardView = new BoardVisuals();
 		
 		assertTrue(BoardView.ProxyitemPrinter(0).equals(" "));
-		assertTrue(BoardView.ProxyitemPrinter(-1).equals("█"));
-		assertTrue(BoardView.ProxyitemPrinter(-2).equals("#"));
+		assertTrue(BoardView.ProxyitemPrinter(-1).equals("#"));
+		assertTrue(BoardView.ProxyitemPrinter(-2).equals("█"));
 		assertTrue(BoardView.ProxyitemPrinter(-3).equals("E"));
 		
 		
 		assertTrue(BoardView.ProxyitemPrinter(9).equals("E"));
 		assertTrue(BoardView.ProxyitemPrinter(8).equals("8"));
 		assertTrue(BoardView.ProxyitemPrinter(1).equals("1"));
+		
+		//assertTrue(BoardView.ProxyitemPrinter(null).equals(errorStr));
 		
 	}
 	
@@ -148,28 +236,28 @@ public class BoardVisualsTest {
 		
 	BoardVisuals BoardView = new BoardVisuals();
 	
-	int[] aja = {-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2};
+	int[] testRowArray = {-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2};
 	
 	lowerStr = " 14 │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │ █ │\r\n"
 			 + " ───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘";
 	
-	assertTrue(BoardView.ProxyPrintLowerRow(aja, 14).equals(lowerStr));
+	assertTrue(BoardView.ProxyPrintLowerRow(testRowArray, 14).equals(lowerStr));
 	
-	for (int i = 0; i < aja.length; i++)
-		++aja[i];
+	for (int i = 0; i < testRowArray.length; i++)
+		++testRowArray[i];
 	
 	lowerStr = " 14 │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │ # │\r\n"
 			 + " ───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘";
 	
-	assertTrue(BoardView.ProxyPrintLowerRow(aja, 14).equals(lowerStr));
+	assertTrue(BoardView.ProxyPrintLowerRow(testRowArray, 14).equals(lowerStr));
 	
-	for (int i = 0; i < aja.length; i++)
-		++aja[i];
+	for (int i = 0; i < testRowArray.length; i++)
+		++testRowArray[i];
 	
 	lowerStr = " 14 │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │\r\n"
 			 + " ───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘";
 	
-	assertTrue(BoardView.ProxyPrintLowerRow(aja, 14).equals(lowerStr));
+	assertTrue(BoardView.ProxyPrintLowerRow(testRowArray, 14).equals(lowerStr));
 	
 	}
 	
