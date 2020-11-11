@@ -27,11 +27,8 @@ public class Square {
 	    	if(s == 1 || s==2 || s==3) {
 	    		this.state=s;	    	
 	    	}
-	    	else {
-	    		throw new IllegalArgumentException("Input state must be 1 or 2 or 3: " + s);
-	    	}
 	    }catch(Exception e) {
-	   
+	    	throw new IllegalArgumentException("Input state must be 1 or 2 or 3: " + s);
 	    }
 	}
 	
@@ -44,6 +41,6 @@ public class Square {
 	}
 	
 	public int getAdjacent() {
-		return 0;
+		return 0; 
 	}
 }

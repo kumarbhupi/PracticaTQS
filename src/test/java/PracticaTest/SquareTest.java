@@ -33,4 +33,4 @@ public class SquareTest {
 		//squareTest.getAdjacent();
 		fail("Not yet implemented");
 	}
-}
+} 
