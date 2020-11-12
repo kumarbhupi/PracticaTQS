@@ -10,17 +10,18 @@ public class BoardVisuals {
 	// POSITIVE NUMBERS REPRESENT THE ACTUAL NUMBER OF MINES AROUND THE SQUARE 
 	String lastOutput;
 
-	BoardVisuals() {
-
-	}
-
-	BoardVisuals(int[][] matrix) {
-
-	}
-
 	public String DrawBoard(int[][] matrix) {
 
-		return "";
+		String outputPrint = printUpperRow(matrix[0]) + "\r\n";
+		
+		for (int i=1;i<matrix.length;i++) {
+				outputPrint += printCentralRow(matrix[i], i+1) + "\r\n";
+		}
+		
+		outputPrint += printLowerRow(matrix[matrix.length-1].length);
+		
+		lastOutput = outputPrint;
+		return outputPrint;
 	}
 
 	private String printUpperRow(int[] row) {
@@ -30,15 +31,18 @@ public class BoardVisuals {
 			String upperPart =	"    │";
 			String centerPart =	" ───┼";
 			String lowerPart= 	"  1 │";
+			//String extraLowerPart = " ───┼";
 
 			for (int i=0;i<row.length;i++) {
 
 				if (i == row.length-1) {
 					upperPart += " " + String.format("%-2d", i+1) + "│\r\n";
 					centerPart += "───┤\r\n";
+					//extraLowerPart  += "───┤";
 				} else {
 					upperPart += " " + String.format("%-2d", i+1) + "│";
 					centerPart += "───┼";
+					//extraLowerPart  += "───┼";
 				} 
 
 				lowerPart  += " " + itemPrinter(row[i]) + " │";
@@ -46,9 +50,7 @@ public class BoardVisuals {
 			}
 
 			String finalPrint = upperPart + centerPart + lowerPart;
-
 			System.out.println(finalPrint);
-
 			return finalPrint;
 		} else {
 			return "--PRINT ERROR. FILA DEMASIADO CORTA (MENOR QUE 1)--";
@@ -62,24 +64,24 @@ public class BoardVisuals {
 		if(row != null && row.length>0) {
 			String upperPart = " ───┼";
 			String centerPart = " " + String.format("%2d", nRow) + " │"; 
-			String lowerPart= " ───┼";
+			//String lowerPart= " ───┼";
 
 
 			for (int i=0;i<row.length;i++) {
 
 				if (i == row.length-1) {
 					upperPart  += "───┤\r\n";
-					centerPart += " " + itemPrinter(row[i]) + " │\r\n";
-					lowerPart += "───┤";
+					centerPart += " " + itemPrinter(row[i]) + " │";
+					//lowerPart += "───┤";
 				} else {
 					upperPart  += "───┼";
 					centerPart += " " + itemPrinter(row[i]) + " │";
-					lowerPart  += "───┼";
+					//lowerPart  += "───┼";
 				} 
 
 			}
 
-			String finalPrint = upperPart + centerPart + lowerPart;
+			String finalPrint = upperPart + centerPart ;//+ lowerPart;
 
 			System.out.println(finalPrint);
 
@@ -90,26 +92,26 @@ public class BoardVisuals {
 
 	}
 
-	private String printLowerRow(int[] row, int nRow) { 
+	private String printLowerRow(int rowLength) { 
 
-		if(row != null && row.length>0) {
-			String upperPart =	" " + String.format("%2d", nRow) + " │";
+		if(rowLength>0) {
+			//String upperPart =	" " + String.format("%2d", nRow) + " │";
 			String lowerPart= 	" ───┴";
 
-			for (int i=0;i<row.length;i++) {
+			for (int i=0;i<rowLength;i++) {
 
-				if (i == row.length-1) {
+				if (i == rowLength-1) {
 
-					upperPart += " " + itemPrinter(row[i]) + " │\r\n";
+					//upperPart += " " + itemPrinter(row[i]) + " │\r\n";
 					lowerPart += "───┘";
 				} else {
-					upperPart += " " + itemPrinter(row[i]) + " │";
+					//upperPart += " " + itemPrinter(row[i]) + " │";
 					lowerPart += "───┴";
 				} 
 
 			}
 
-			String finalPrint = upperPart + lowerPart;
+			String finalPrint = /*upperPart +*/ lowerPart;
 
 			System.out.println(finalPrint);
 
@@ -153,7 +155,7 @@ public class BoardVisuals {
 	public String ProxyitemPrinter(int type) { return itemPrinter(type);}
 	public String ProxyPrintUpperRow(int[] row) { return printUpperRow(row);}
 	public String ProxyPrintCentralRow(int[] row, int nRow) { return printCentralRow(row, nRow);}
-	public String ProxyPrintLowerRow(int[] row, int nRow) { return printLowerRow(row, nRow);}
+	public String ProxyPrintLowerRow(int rowLength) { return printLowerRow(rowLength);}
 
 
 }
