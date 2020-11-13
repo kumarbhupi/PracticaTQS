@@ -10,8 +10,9 @@ public class BoardVisuals {
 	// POSITIVE NUMBERS REPRESENT THE ACTUAL NUMBER OF MINES AROUND THE SQUARE 
 	String lastOutput;
 
-	public String DrawBoard(int[][] matrix) {
-
+	public String DrawBoard(Board b) {
+		
+		Square [][] matrix= b.getMatrix();
 		String outputPrint = printUpperRow(matrix[0]) + "\r\n";
 		
 		for (int i=1;i<matrix.length;i++) {
@@ -24,7 +25,7 @@ public class BoardVisuals {
 		return outputPrint;
 	}
 
-	private String printUpperRow(int[] row) {
+	private String printUpperRow(Square[] row) {
 
 		if(row != null && row.length>0) {
 
@@ -45,7 +46,7 @@ public class BoardVisuals {
 					//extraLowerPart  += "───┼";
 				} 
 
-				lowerPart  += " " + itemPrinter(row[i]) + " │";
+				lowerPart  += " " + itemPrinter(row[i].getState()) + " │";
 
 			}
 
@@ -59,7 +60,7 @@ public class BoardVisuals {
 
 	}
 
-	private String printCentralRow(int[] row, int nRow) {
+	private String printCentralRow(Square[] row, int nRow) {
 
 		if(row != null && row.length>0) {
 			String upperPart = " ───┼";
@@ -71,11 +72,11 @@ public class BoardVisuals {
 
 				if (i == row.length-1) {
 					upperPart  += "───┤\r\n";
-					centerPart += " " + itemPrinter(row[i]) + " │";
+					centerPart += " " + itemPrinter(row[i].getState()) + " │";
 					//lowerPart += "───┤";
 				} else {
 					upperPart  += "───┼";
-					centerPart += " " + itemPrinter(row[i]) + " │";
+					centerPart += " " + itemPrinter(row[i].getState()) + " │";
 					//lowerPart  += "───┼";
 				} 
 
@@ -153,8 +154,8 @@ public class BoardVisuals {
 	//TEST PROXIES
 
 	public String ProxyitemPrinter(int type) { return itemPrinter(type);}
-	public String ProxyPrintUpperRow(int[] row) { return printUpperRow(row);}
-	public String ProxyPrintCentralRow(int[] row, int nRow) { return printCentralRow(row, nRow);}
+	public String ProxyPrintUpperRow(Square[] row) { return printUpperRow(row);}
+	public String ProxyPrintCentralRow(Square[] row, int nRow) { return printCentralRow(row, nRow);}
 	public String ProxyPrintLowerRow(int rowLength) { return printLowerRow(rowLength);}
 
 
