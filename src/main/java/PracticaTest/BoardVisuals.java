@@ -5,7 +5,7 @@ public class BoardVisuals {
 	//PARAMETERS ADJUSTED FOR A 14*18 BOARD AND 40 MINES
 	// PROTOTYPE ROW VALUES: 
 	// " " = 0
-	// "█" = -2
+	// "â–ˆ" = -2
 	// "#" = -1
 	// POSITIVE NUMBERS REPRESENT THE ACTUAL NUMBER OF MINES AROUND THE SQUARE 
 	String lastOutput;
@@ -29,24 +29,24 @@ public class BoardVisuals {
 
 		if(row != null && row.length>0) {
 
-			String upperPart =	"    │";
-			String centerPart =	" ───┼";
-			String lowerPart= 	"  1 │";
-			//String extraLowerPart = " ───┼";
+			String upperPart =	"    |";
+			String centerPart =	" ----";
+			String lowerPart= 	"  1 |";
+			//String extraLowerPart = " â”€â”€â”€â”¼";
 
 			for (int i=0;i<row.length;i++) {
 
 				if (i == row.length-1) {
-					upperPart += " " + String.format("%-2d", i+1) + "│\r\n";
-					centerPart += "───┤\r\n";
-					//extraLowerPart  += "───┤";
+					upperPart += " " + String.format("%-2d", i+1) + "|\r\n";
+					centerPart += "---|\r\n";
+					//extraLowerPart  += "â”€â”€â”€â”¤";
 				} else {
-					upperPart += " " + String.format("%-2d", i+1) + "│";
-					centerPart += "───┼";
-					//extraLowerPart  += "───┼";
+					upperPart += " " + String.format("%-2d", i+1) + "|";
+					centerPart += "---|";
+					//extraLowerPart  += "â”€â”€â”€â”¼";
 				} 
 
-				lowerPart  += " " + itemPrinter(row[i].getState()) + " │";
+				lowerPart  += " " + itemPrinter(row[i].getState()) + " |";
 
 			}
 
@@ -63,21 +63,21 @@ public class BoardVisuals {
 	private String printCentralRow(Square[] row, int nRow) {
 
 		if(row != null && row.length>0) {
-			String upperPart = " ───┼";
-			String centerPart = " " + String.format("%2d", nRow) + " │"; 
-			//String lowerPart= " ───┼";
+			String upperPart = " ---|";
+			String centerPart = " " + String.format("%2d", nRow) + " |"; 
+			//String lowerPart= " â”€â”€â”€â”¼";
 
 
 			for (int i=0;i<row.length;i++) {
 
 				if (i == row.length-1) {
-					upperPart  += "───┤\r\n";
-					centerPart += " " + itemPrinter(row[i].getState()) + " │";
-					//lowerPart += "───┤";
+					upperPart  += "---|\r\n";
+					centerPart += " " + itemPrinter(row[i].getState()) + " |";
+					//lowerPart += "â”€â”€â”€â”¤";
 				} else {
-					upperPart  += "───┼";
-					centerPart += " " + itemPrinter(row[i].getState()) + " │";
-					//lowerPart  += "───┼";
+					upperPart  += "---|";
+					centerPart += " " + itemPrinter(row[i].getState()) + " |";
+					//lowerPart  += "â”€â”€â”€â”¼";
 				} 
 
 			}
@@ -96,18 +96,18 @@ public class BoardVisuals {
 	private String printLowerRow(int rowLength) { 
 
 		if(rowLength>0) {
-			//String upperPart =	" " + String.format("%2d", nRow) + " │";
-			String lowerPart= 	" ───┴";
+			//String upperPart =	" " + String.format("%2d", nRow) + " |";
+			String lowerPart= 	" ----";
 
 			for (int i=0;i<rowLength;i++) {
 
 				if (i == rowLength-1) {
 
-					//upperPart += " " + itemPrinter(row[i]) + " │\r\n";
-					lowerPart += "───┘";
+					//upperPart += " " + itemPrinter(row[i]) + " |\r\n";
+					lowerPart += "----";
 				} else {
-					//upperPart += " " + itemPrinter(row[i]) + " │";
-					lowerPart += "───┴";
+					//upperPart += " " + itemPrinter(row[i]) + " |";
+					lowerPart += "----";
 				} 
 
 			}
@@ -125,20 +125,23 @@ public class BoardVisuals {
 	private String itemPrinter(int type) {
 
 		// " " = 0
-		// "█" = -2
+		// "â–ˆ" = -2
 		// "#" = -1
 
 		String itemStr; 
 
 		switch(type) {
 		case 0:
-			itemStr = " ";
+			itemStr = "?";
 			break;
 		case -1:
-			itemStr = "#";
+			itemStr = " ";
 			break;
 		case -2:
-			itemStr = "█";
+			itemStr = "F";
+			break;
+		case -3:
+			itemStr = "#";
 			break;
 		default:
 
