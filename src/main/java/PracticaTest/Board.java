@@ -1,7 +1,6 @@
 package PracticaTest;
 
 
-
 public class Board {
 
 	private Square[][] boardMatrix;
@@ -11,29 +10,37 @@ public class Board {
 		//boardMatrix = new Square[14][18];
 		
 	}
+	////////////FOR TESTING PURPOSES//////////// 
+	Board(boolean[][] inputMat) {
+	
+	}
+	////////////////////////////////////////////
 	
 	private void clearBoard() {
+
 		
 	}
 	
-	private boolean generateMineMap(int nMines) {
-		return false;
+	private void generateMineMap(int nMines) {
+		
+
+		
 	}
 	
-	
+	//si peta -1
+	//si no peta, el numero de casillas que descubre
 	public int uncoverPosition(int x, int y) {
 		
 		return 0;// tal vez el número de casillas para luego usarlo en la puntuación?
 	}
 	
-	private void uncoverNeighbours() {
-		
-		
+	private void uncoverNeighbours(int x, int y) {
+
 	}
 	
-	public void setFlag(int x, int y) {
+	public boolean setFlag(int x, int y) {
 		
-		 
+		 return false;//cuando hay bandera y vuelven a llamar a set bandera
 	}
 	
 	public int getState(int x, int y) {
@@ -43,17 +50,19 @@ public class Board {
 	
 	public boolean isMine(int x, int y) {
 		
-		return false; 
+		return boardMatrix[y][x].isMine(); 
 	}
 	
 	public int getLengthX() { return boardMatrix[0].length; }
 	public int getLengthY() { return boardMatrix.length; }
 	
+	public Square[][] getMatrix() {return boardMatrix;} 
+	
 	public void proxyClearBoard() { clearBoard();}
-	public boolean proxyGenerateMineMap(int nMines) { return generateMineMap(nMines);}	
+	public void proxyGenerateMineMap(int nMines) { generateMineMap(nMines);}	
 	//public boolean proxyChangeMineSate() { return changeMineSate();}
 	public int proxyUncoverPosition(int x, int y) { return uncoverPosition(x, y);}
-	public void proxyUncoverNeighbours() { uncoverNeighbours();}	
+	public void proxyUncoverNeighbours(int x, int y) { uncoverNeighbours(x, y);}	
 	public void proxyToggleBanderaByPosition(int x, int y) { setFlag(x, y);}
 	
 	
