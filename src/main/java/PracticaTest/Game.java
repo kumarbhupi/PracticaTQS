@@ -14,7 +14,9 @@ public class Game {
 	static Board board;
 	static BoardVisuals visuals;
 
-
+	
+	static int inputX, inputY;
+	
 	public Game() {
 
 	}
@@ -32,10 +34,10 @@ public class Game {
 			if(p.matcher(input).matches() && !input.isBlank()) {
 				String [] nums= input.split(",");
 				
-				int num1= Integer.parseInt(nums[0]);
-				int num2= Integer.parseInt(nums[1]);
+				inputX= Integer.parseInt(nums[0]);
+				inputY= Integer.parseInt(nums[1]);
 
-				if((num1>=1 && num1<=18) && (num2>=1 && num2<=14)) {
+				if((inputX>=1 && inputX<=18) && (inputY>=1 && inputY<=14)) {
 					r=true;
 				}
 			}
@@ -64,8 +66,8 @@ public class Game {
 
 		System.out.println("------------------------------ BIENVENIDO AL BUSCAMINAS ! ----------------------------------------------");
 
-		System.out.println("Este es un juego con gráficos basados en consola, por lo que necesitará  usar su teclado.\n"
-				+ "Primeramente deberá seleccionar que casilla desea modificar para a continuación decidir que hacer con ella.\n"
+		System.out.println("Este es un juego con grï¿½ficos basados en consola, por lo que necesitarï¿½ usar su teclado.\n"
+				+ "Primeramente deberï¿½ seleccionar que casilla desea modificar para a continuaciï¿½n decidir que hacer con ella.\n"
 				+ "La tecla F pone una bandera i la tecla D destapa una casilla."
 				+ "Listo? [Pulse s/n]: \n\n"); //Si es que si limpio consola i empiezo mostrando ya e tablero, si es que no me despido i corto el juego.
 
@@ -82,13 +84,13 @@ public class Game {
 				
 				if (checkInput(action, 2)) {
 					if(action.equals("f")) {
-						exists=board.setFlag(Integer.parseInt(String.valueOf(pos.charAt(0)))-1, Integer.parseInt(String.valueOf(pos.charAt(2)))-1);
+						exists=board.setFlag(inputX-1, inputY-1);
 						if(!exists) player.increaseFlagNum();
 						else player.decreaseFlagNum();
 						System.out.println("Bandera puesta!\n");
 					}
 					else if(action.equals("d")) {
-						uncovered= board.uncoverPosition(Integer.parseInt(String.valueOf(pos.charAt(0)))-1, Integer.parseInt(String.valueOf(pos.charAt(2)))-1);
+						uncovered= board.uncoverPosition(inputX-1, inputY-1);
 						if(uncovered==-1) {
 							itsPossibleToPlay=false;
 							System.out.println("BOOM! Has perdido.\n");
@@ -106,12 +108,12 @@ public class Game {
 
 				} else {
 					
-					System.out.println("ERROR: Formato de la acción incorrecto. Asegúrese de pulsar F (Bandera) o D (Destapar)");
+					System.out.println("ERROR: Formato de la acciï¿½n incorrecto. Asegï¿½rese de pulsar F (Bandera) o D (Destapar)");
 				}
 				
 			} else {
 				
-				System.out.println("ERROR: Coordenadas incorrectas. Asegúrese que los valores están dentro del tablero y el formato sea x,y");
+				System.out.println("ERROR: Coordenadas incorrectas. Asegï¿½rese que los valores estï¿½n dentro del tablero y el formato sea x,y");
 			}
 		}
 		while ( itsPossibleToPlay== true );
