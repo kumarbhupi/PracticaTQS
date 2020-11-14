@@ -1,5 +1,6 @@
 package PracticaTest;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Game {
 	
@@ -18,9 +19,34 @@ public class Game {
 		
 	}
 	
-	public boolean checkInput(String intput, int t) {
-
-		return true;
+	public boolean checkInput(String input, int t) {
+		
+		boolean r=false;
+		
+		input = input.replaceAll("\\s+", ""); //Delete all spaces
+		input= input.toLowerCase();
+		
+		if(t==1) {
+			Pattern p = Pattern.compile("\\d{1},\\d{1}");
+			
+			if(p.matcher(input).matches()) {
+				int num1= Integer.parseInt(String.valueOf(input.charAt(0)));
+				int num2= Integer.parseInt(String.valueOf(input.charAt(2)));
+				
+				if((num1>=0 && num1<=40) && (num2>=0 && num2<=40)) {
+					r=true;
+				}
+			}
+		}
+		
+		else if(t==2) {
+			Pattern p = Pattern.compile("[fd]");
+			
+			if(p.matcher(input).matches() && !input.isBlank()) {
+					r=true;
+			}
+		}
+		return r;
 	}
 	
 	 public static void main(String[] args) {
@@ -30,7 +56,7 @@ public class Game {
 	        boolean itsPossibleToPlay=true;
 	        Scanner reader = new Scanner(System.in);
 	        boolean exists;
-	        int uncovered=0;
+	        int uncovered=0; 
 	        String pos;
 	        String action;
 	        
