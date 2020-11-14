@@ -44,7 +44,7 @@ public class BoardTest {
 		Board tabla = new Board();
 		
 		assertTrue(tabla.setFlag(0, 0));
-		assertTrue(tabla.getState(0, 0)==3);//falta definir los valores de state correctamente
+		assertTrue(tabla.getState(0, 0)==-2);//falta definir los valores de state correctamente
 		assertFalse(tabla.setFlag(0, 0));
 		assertTrue(tabla.getState(0, 0)==0);//falta definir los valores de state correctamente
 		
@@ -53,6 +53,8 @@ public class BoardTest {
 	@Test
 	public void testFullUncover() {
 		
+		
+		BoardVisuals visuals = new BoardVisuals();
 		boolean[][] testArray ={{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
 								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
 								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
@@ -68,8 +70,15 @@ public class BoardTest {
 								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
 								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true}};
 		
+		
 		Board tabla = new Board(testArray);
-		tabla.uncoverPosition(10, 0);
+		visuals.DrawBoard(tabla);
+		System.out.println();
+		System.out.println();
+		
+		tabla.uncoverPosition(9, 4);
+		visuals.DrawBoard(tabla);
+		
 		
 		assertTrue(tabla.getState(7, 0)==3);
 		assertTrue(tabla.getState(10, 0)==3);
@@ -84,13 +93,13 @@ public class BoardTest {
 		
 		//EXCEPCIONES
 		
-		boolean[][] testArrayExcep ={{true,false,false,false,false},
-									 {false,false,true,false,false},
-									 {false,false,false,false,true}};
-		
-		tabla = new Board(testArrayExcep);
-		tabla.uncoverPosition(-1, -1);
-		tabla.uncoverPosition(5, 3);
+//		boolean[][] testArrayExcep ={{true,false,false,false,false},
+//									 {false,false,true,false,false},
+//									 {false,false,false,false,true}};
+//		
+//		tabla = new Board(testArrayExcep);
+//		tabla.uncoverPosition(-1, -1);
+//		tabla.uncoverPosition(5, 3);
 	}
 	
 	@Test
