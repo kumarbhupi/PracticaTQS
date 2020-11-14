@@ -22,7 +22,7 @@ public class GameTest {
 		r=game.checkInput("1000000,5", 1);
 		assertTrue(r==false);
 		r=game.checkInput(" ", 1);
-		assertTrue(r==false);
+		assertTrue(r==false); 
 		
 		r=game.checkInput("F",2);
 		assertTrue(r==true);
