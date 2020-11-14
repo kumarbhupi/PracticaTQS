@@ -20,29 +20,23 @@ public class Player {
 	}
 	
 	
-	public int decreaseFlagNum(int numFlags) {
+	public void decreaseFlagNum() {
 		
-		int newFlagNum;
 		
-		if (numFlags - 1 <= 0)
-			newFlagNum = 0;
+		if (flagCount - 1 <= 0)
+			flagCount = 0;
 		else 
-			newFlagNum = --numFlags;
+			flagCount--;
 		
-		return newFlagNum;
 	}
 	
 	
-	public int increaseFlagNum(int numFlags) {
-		
-		int newFlagNum;
-		
-		if (numFlags + 1 >= 40)
-			newFlagNum = 40;
+	public void increaseFlagNum() {
+
+		if (flagCount + 1 >= 40)
+			flagCount = 40;
 		else 
-			newFlagNum = ++numFlags; 
-			
-		return newFlagNum;
+			flagCount++;
 		
 	}
 	
