@@ -8,15 +8,15 @@ public class SquareTest {
 	@Test //Test the getters and setters of state square
 	public void testSquareState() {
 		Square squareTest = new Square();
-		for(int i=1; i<=3; i++) {
+		for(int i=-3; i<=8; i++) {
 			squareTest.setState(i);
-			assertTrue(i==squareTest.getState());
+			assertTrue(i==squareTest.getState()); 
 		}
 		squareTest.setState(-500);
 		squareTest.setState(500);
-		squareTest.setState(0);
-		squareTest.setState(4);
-		assertTrue(3==squareTest.getState());
+		squareTest.setState(-4);
+		squareTest.setState(8);
+		assertTrue(8==squareTest.getState());
 	}
 
 	@Test //Test setters and getters of mine
@@ -25,12 +25,5 @@ public class SquareTest {
 		assertTrue(false==squareTest.isMine());
 		squareTest.setMine();
 		assertTrue(true==squareTest.isMine());
-	}
-
-	@Test //Test the calculation of adjacency mines
-	public void testSquareAdjacent() {
-		Square squareTest = new Square();
-		//squareTest.getAdjacent();
-		fail("Not yet implemented");
 	}
 } 
