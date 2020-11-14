@@ -12,7 +12,7 @@ public class Player {
 	
 	
 	Player() {
-		this.flagCount = MINE_NUM;
+		this.flagCount = MINE_NUM; 
 	}
 	
 	Player(int mineNum) {
@@ -51,13 +51,7 @@ public class Player {
 		} else
 			return 0;
 	}
-	
-	public int finalScoreCalc() {
-		
-		return 0;
-	}
-	
-	
+
 	public int getFlagCount() { return this.flagCount; }
 	public int getScore() { return this.score; }
 	public void setScore(int points) { this.score = points; }

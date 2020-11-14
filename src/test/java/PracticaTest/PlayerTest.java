@@ -14,7 +14,7 @@ public class PlayerTest {
 		Player plyrTest = new Player();
 		
 		assertTrue(plyrTest.getFlagCount()==40);
-		assertFalse(plyrTest.getFlagCount()==0);
+		assertFalse(plyrTest.getFlagCount()==0); 
 		
 	}
 
@@ -36,10 +36,9 @@ public class PlayerTest {
 		
 		Player plyrTest = new Player();
 		
-		assertTrue(plyrTest.decreaseFlagNum(20)==19);
-		assertTrue(plyrTest.decreaseFlagNum(0)==0);
+		plyrTest.decreaseFlagNum();
 		
-		assertFalse(plyrTest.decreaseFlagNum(0)==-1);
+		assertTrue(39==plyrTest.getFlagCount());
 		
 	}
 
@@ -48,11 +47,9 @@ public class PlayerTest {
 		
 		Player plyrTest = new Player();
 		
-		assertTrue(plyrTest.increaseFlagNum(40)==40);
-		assertTrue(plyrTest.increaseFlagNum(0)==1);
+		plyrTest.increaseFlagNum();
 		
-		assertFalse(plyrTest.increaseFlagNum(0)==0);
-		assertFalse(plyrTest.increaseFlagNum(40)==41);
+		assertTrue(40==plyrTest.getFlagCount());
 		
 	}
 
@@ -82,10 +79,4 @@ public class PlayerTest {
 		
 		
 	}
-
-	@Test
-	public void testFinalScoreCalc() {
-		fail("Not yet implemented");
-	}
-
 }
