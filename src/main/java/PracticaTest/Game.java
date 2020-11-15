@@ -66,10 +66,9 @@ public class Game {
 
 		System.out.println("------------------------------ BIENVENIDO AL BUSCAMINAS ! ----------------------------------------------");
 
-		System.out.println("Este es un juego con gr�ficos basados en consola, por lo que necesitar� usar su teclado.\n"
-				+ "Primeramente deber� seleccionar que casilla desea modificar para a continuaci�n decidir que hacer con ella.\n"
-				+ "La tecla F pone una bandera i la tecla D destapa una casilla."
-				+ "Listo? [Pulse s/n]: \n\n"); //Si es que si limpio consola i empiezo mostrando ya e tablero, si es que no me despido i corto el juego.
+		System.out.println("Este es un juego con graficos basados en consola, por lo que necesitara usar su teclado.\n"
+				+ "Primeramente debera seleccionar que casilla desea modificar para a continuacion decidir que hacer con ella.\n"
+				+ "La tecla F pone una bandera i la tecla D destapa una casilla.\n");
 
 		System.out.println("A jugar...!\n");
 		board.generateMineMap(40);
@@ -93,7 +92,7 @@ public class Game {
 						uncovered= board.uncoverPosition(inputX-1, inputY-1);
 						if(uncovered==-1) {
 							itsPossibleToPlay=false;
-							System.out.println("BOOM! Has perdido.\n");
+							System.out.println("\n\nBOOM! Has perdido.\n");
 						} else {
 							player.increaseScore(uncovered);
 							itsPossibleToPlay = !board.isAllUncovered();//COMPROBAR SI YA ESTAN TODAS DESTAPADAS
@@ -103,21 +102,22 @@ public class Game {
 					}
 
 					System.out.println("Tu puntuacion es: "+player.getScore() + "\n");
-					visuals.DrawBoard(board);
+					
+					if(itsPossibleToPlay==true)
+						visuals.DrawBoard(board);
+					
 					System.out.println();
 
 				} else {
 					
-					System.out.println("ERROR: Formato de la acci�n incorrecto. Aseg�rese de pulsar F (Bandera) o D (Destapar)");
+					System.out.println("ERROR: Formato de la accion incorrecto. Asegurese de pulsar F (Bandera) o D (Destapar)");
 				}
 				
 			} else {
 				
-				System.out.println("ERROR: Coordenadas incorrectas. Aseg�rese que los valores est�n dentro del tablero y el formato sea x,y");
+				System.out.println("ERROR: Coordenadas incorrectas. Asegurese que los valores estan dentro del tablero (fila:1-18 y columna:1-14) y el formato sea x,y");
 			}
 		}
 		while ( itsPossibleToPlay== true );
-
 	}
-
 }

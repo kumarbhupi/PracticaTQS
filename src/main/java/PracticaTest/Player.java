@@ -44,17 +44,29 @@ public class Player {
 		
 		int scoreIncrement = this.score; 
 		
-		if (nSquares > 0) {
-			scoreIncrement =nSquares * 10;
-			this.score += scoreIncrement;
-			return scoreIncrement;
-		} else
-			return 0;
+	    try {
+	    	if(nSquares > 0) {
+	    		scoreIncrement =nSquares * 10;
+				this.score += scoreIncrement;   	
+	    	}
+	    }catch(Exception e) {
+	    	throw new IllegalArgumentException("Input nSquares must be bigger than 0: " + nSquares);
+	    	
+	    }
+	    return scoreIncrement;	
 	}
+
 
 	public int getFlagCount() { return this.flagCount; }
 	public int getScore() { return this.score; }
-	public void setScore(int points) { this.score = points; }
-		
+	public void setScore(int points) { 
+		try {
+	    	if(points >= 0 && points<=2120) {
+	    		this.score =points;	
+	    	}
+	    }catch(Exception e) {
+	    	throw new IllegalArgumentException("Input points must be between 0 and 2120: " + points);
+	    }
+	}
 	
 }
