@@ -88,51 +88,145 @@ public class Board {
 		
 	}
 	
-	private void uncoverNeighbours(int x, int y) {
-
-		int mineCounting = 0;
+		private void uncoverNeighbours(int x, int y) {
 		
-		boolean checkLeftBound 	= x>0; 
-		boolean checkRightBound = x<getLengthX()-1;
+		int mineCounting = 0;
+		int posState;
+		
+		
+		if (boardMatrix[y][x].getState()==0) {
+			
+			boardMatrix[y][x].setState(-1);
+			
+//			if (checkBounds(x, y-1, 0)) {
+			if (checkBounds(x, y, 0)) {
+				
+				posState = boardMatrix[y-1][x].getState();
+				
+				if (boardMatrix[y-1][x].isMine())
+					mineCounting++;
+				else 
+					if ((posState==-2 || posState==0)) 
+						uncoverNeighbours(x, y-1);
+			}
+				
+//			if (checkBounds(x-1, y-1, 0) && checkBounds(x-1, y-1, 2)) {
+			if (checkBounds(x, y, 0) && checkBounds(x, y, 2)) {
+				
+				posState = boardMatrix[y-1][x-1].getState();
+				
+				if (boardMatrix[y-1][x-1].isMine())
+					mineCounting++;
+				else 
+					if ((posState==-2 || posState==0))  
+						uncoverNeighbours(x-1, y-1);
+			}
+			
+//			if (checkBounds(x+1, y-1, 0) && checkBounds(x+1, y-1, 3)) {
+			if (checkBounds(x, y, 0) && checkBounds(x, y, 3)) {
+				
+				posState = boardMatrix[y-1][x+1].getState();
+				
+				if (boardMatrix[y-1][x+1].isMine())
+					mineCounting++;
+				else 
+					if ((posState==-2 || posState==0))  
+						uncoverNeighbours(x+1, y-1);	
+			}
+//			---------------------------------------------
+//			if (checkBounds(x-1, y, 2)) {
+			if (checkBounds(x, y, 2)) {
+				
+				posState = boardMatrix[y][x-1].getState();
+				
+				if (boardMatrix[y][x-1].isMine())
+					mineCounting++;
+				else 
+					if ((posState==-2 || posState==0))  
+						uncoverNeighbours(x-1, y);
+			}
+
+//			if (checkBounds(x+1, y, 3)) {
+			if (checkBounds(x, y, 3)) {
+				
+				posState = boardMatrix[y][x+1].getState();
+				
+				if (boardMatrix[y][x+1].isMine())
+					mineCounting++;
+				else 
+					if ((posState==-2 || posState==0))  
+						uncoverNeighbours(x+1, y);	
+			}
+
+//			---------------------------------------------
+//			if (checkBounds(x, y+1, 1)) {
+			if (checkBounds(x, y, 1)) {
+				
+				posState = boardMatrix[y+1][x].getState();
+				
+				if (boardMatrix[y+1][x].isMine())
+					mineCounting++;
+				else 
+					if ((posState==-2 || posState==0))  
+						uncoverNeighbours(x, y+1);	
+			}
+				
+//			if (checkBounds(x-1, y+1, 1) && checkBounds(x-1, y+1, 2)) {
+			if (checkBounds(x, y, 1) && checkBounds(x, y, 2)) {
+				
+				posState = boardMatrix[y+1][x-1].getState();
+				
+				if (boardMatrix[y+1][x-1].isMine())
+					mineCounting++;
+				else 
+					if ((posState==-2 || posState==0))  
+						uncoverNeighbours(x-1, y+1);	
+			}
+			
+//			if (checkBounds(x+1, y+1, 1) && checkBounds(x+1, y+1, 3)) {
+			if (checkBounds(x, y, 1) && checkBounds(x, y, 3)) {
+				
+				posState = boardMatrix[y+1][x+1].getState();
+				
+				if (boardMatrix[y+1][x+1].isMine())
+					mineCounting++;
+				else 
+					if ((posState==-2 || posState==0))  
+						uncoverNeighbours(x+1, y+1);	
+			}
+			
+			if (mineCounting>0)
+				boardMatrix[y][x].setState(mineCounting);
+			
+				
+			
+			
+		}
+		
+	}
+	
+	
+	private boolean checkBounds(int x, int y, int dir) {
+		
 		boolean checkUpBound 	= y>0;
 		boolean checkDownBound 	= y<getLengthY()-1;
-			
-		if (checkUpBound) {
-			
-			if (boardMatrix[y-1][x].isMine()) {
-				mineCounting++;
-			} else {
-				
-				
-			}
-			/*
-			if (checkLeftBound) 
-				boardMatrix[y-1][x-1];
-			
-			if (checkRightBound)
-				boardMatrix[y-1][x+1];
-			*/
+		boolean checkLeftBound 	= x>0; 
+		boolean checkRightBound = x<getLengthX()-1;
+		
+		
+		switch(dir) {
+		case 0:
+			return checkUpBound;
+		case 1:
+			return checkDownBound;
+		case 2:
+			return checkLeftBound;
+		case 3:
+			return checkRightBound;
 		}
-		/*
-		boardMatrix[y][x-1];
-		boardMatrix[y][x+1];
 		
+		return checkLeftBound && checkRightBound && checkUpBound && checkDownBound;
 		
-		if (checkUpBound) {
-		
-			boardMatrix[y+1][x];
-			
-			if (checkLeftBound) 
-				boardMatrix[y+1][x-1];
-			
-			
-			if (checkRightBound)
-				boardMatrix[y+1][x+1];
-		
-		}
-		*/
-		//uncoverNeighbours(x, y);
-
 	}
 	
 	public boolean isAllUncovered() {
@@ -153,16 +247,10 @@ public class Board {
 		
 	}
 	
-	private boolean checkBounds(int x, int y, int dir) {
-        return false;
-    }
-	
 	public int getState(int x, int y) {
 		
 		return boardMatrix[y][x].getState();
 	}
-	
-	
 	
 	public void setState(int x, int y, int state) {
 		
@@ -181,10 +269,12 @@ public class Board {
 	
 	public void proxyClearBoard() { clearBoard();}
 	public void proxyGenerateMineMap(int nMines) { generateMineMap(nMines);}	
-	public int proxyUncoverPosition(int x, int y) { return uncoverPosition(x, y);}	
+	public int proxyUncoverPosition(int x, int y) { return uncoverPosition(x, y);}
 	public void proxyToggleBanderaByPosition(int x, int y) { setFlag(x, y);}
+
+	public boolean proxyCheckBounds (int x, int y, int dir) {return checkBounds(x, y, dir);}
+	public int proxyGetAdjacentMines(int x, int y) { return 0;/*return getAdjacentMines(x, y);*/}
 	
-	public boolean proxyCheckBounds(int x, int y, int dir ) { return checkBounds(x,y,dir);}
 	
 	
 }

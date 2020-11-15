@@ -55,41 +55,79 @@ public class BoardTest {
 		
 		
 		BoardVisuals visuals = new BoardVisuals();
-		boolean[][] testArray ={{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
-								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true}};
+//		boolean[][] testArray ={{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true},
+//								{true,true,true,true,true,true,true,false,false,false,false,true,true,true,true,true,true,true}};
 		
+		
+		boolean[][] testArray =	{{true , false , false , false , false , false , false , false , false , false , false , false , true , false , false , true , false , false   },
+				 {false , false , true , false , false , false , false , false , false , false , false , true , false , false , false , false , false , false   },
+				 {false , false , true , false , true , false , false , true , false , false , false , false , false , true , false , false , false , false     },
+				 {false , false , false , false , false , true , false , false , false , false , false , false , true , false , false , false , false , false   },
+				 {false , false , false , false , false , false , true , true , false , true , false , true , false , false , false , false , false , false     },
+				 {false , false , false , false , false , false , false , false , false , false , false , false , false , false , false , false , true , false  },
+				 {false , false , false , false , true , true , true , false , false , false , false , false , true , false , false , true , true , false       },
+				 {false , false , false , false , false , false , false , false , false , false , true , false , false , false , false , false , false , false  },
+				 {false , false , false , false , false , false , true , false , false , true , false , true , false , false , false , false , false , false    },
+				 {true , false , true , false , false , false , false , false , false , false , false , false , true , false , false , false , false , false    },
+				 {false , false , false , false , false , false , false , true , false , false , false , false , false , false , false , true , false , false   },
+				 {false , false , false , false , false , false , false , false , true , false , false , false , true , false , false , false , false , false   },
+				 {true , false , false , true , true , false , false , true , false , false , true , false , true , true , false , false , false , false        },
+				 {false , false , false , false , false , false , false , false , false , false , false , false , false , false , false , false , false , false }};		
 		
 		Board tabla = new Board(testArray);
 		visuals.DrawBoard(tabla);
 		System.out.println();
 		System.out.println();
 		
-		tabla.uncoverPosition(9, 4);
+		tabla.uncoverPosition(7, 7);
 		visuals.DrawBoard(tabla);
 		
+		tabla.uncoverPosition(8, 6);
+		visuals.DrawBoard(tabla);
 		
-		assertTrue(tabla.getState(7, 0)==3);
-		assertTrue(tabla.getState(10, 0)==3);
+		tabla.uncoverPosition(14, 8);
+		visuals.DrawBoard(tabla);
 		
-		assertTrue(tabla.getState(7, tabla.getLengthY()-1)==3);
-		assertTrue(tabla.getState(10, tabla.getLengthY()-1)==3);
+		tabla.uncoverPosition(5, 10);
+		visuals.DrawBoard(tabla);
 		
-		for (int i=1; i<tabla.getLengthY()-1;i++) {
-			assertTrue(tabla.getState(7, tabla.getLengthY()-1)==2);
-			assertTrue(tabla.getState(10, tabla.getLengthY()-1)==2);
-		}
+		tabla.uncoverPosition(8, 0);
+		visuals.DrawBoard(tabla);
+		
+		tabla.uncoverPosition(1, 5);
+		visuals.DrawBoard(tabla);
+		
+		tabla.uncoverPosition(17, 2);
+		visuals.DrawBoard(tabla);
+		
+		tabla.uncoverPosition(2, 8);
+		visuals.DrawBoard(tabla);
+		
+		tabla.uncoverPosition(10, 10);
+		visuals.DrawBoard(tabla);
+		
+//		assertTrue(tabla.getState(7, 0)==3);
+//		assertTrue(tabla.getState(10, 0)==3);
+//		
+//		assertTrue(tabla.getState(7, tabla.getLengthY()-1)==3);
+//		assertTrue(tabla.getState(10, tabla.getLengthY()-1)==3);
+//		
+//		for (int i=1; i<tabla.getLengthY()-1;i++) {
+//			assertTrue(tabla.getState(7, tabla.getLengthY()-1)==2);
+//			assertTrue(tabla.getState(10, tabla.getLengthY()-1)==2);
+//		}
 		
 		//EXCEPCIONES
 		
@@ -149,8 +187,82 @@ public class BoardTest {
 		//assertFalse(tabla.isMine(null, null));
 	}
 	
-	
+	@Test
+	public void testGetAdjacentMines() {
 		
+		boolean[][] testArray ={{true,false,false,true,false},
+								{false,true,true,true,true},
+								{false,true,true,true,false},
+								{true,true,true,true,true},
+								{false,true,false,true,true}};
+
+		Board tabla = new Board(testArray);
+		
+		assertTrue(tabla.proxyGetAdjacentMines(0, 0)==1);
+		assertTrue(tabla.proxyGetAdjacentMines(4, 0)==3);
+		assertTrue(tabla.proxyGetAdjacentMines(2, 2)==8);
+		
+		assertTrue(tabla.proxyGetAdjacentMines(0, 4)==3);
+		assertTrue(tabla.proxyGetAdjacentMines(2, 4)==5);
+		
+		
+	}
+	
+	
+//	0 = up
+//	1 = down
+//	2 = left
+//	3 = right
+	
+	@Test
+	public void testCheckBounds() {
+		
+		
+		boolean[][] testArray ={{true,false,false,false,false},
+								{false,false,true,false,false},
+								{false,false,false,false,true}};
+
+		Board tabla = new Board(testArray); 
+		//esquina superior izq
+		assertFalse(tabla.proxyCheckBounds(0, 0, 0));
+		assertFalse(tabla.proxyCheckBounds(0, 0, 2));
+		assertTrue(tabla.proxyCheckBounds(0, 0, 1));
+		assertTrue(tabla.proxyCheckBounds(0, 0, 3));
+		
+		//esquina superior der
+		assertFalse(tabla.proxyCheckBounds(4, 0, 0));
+		assertFalse(tabla.proxyCheckBounds(4, 0, 3));
+		assertTrue(tabla.proxyCheckBounds(4, 0, 1));
+		assertTrue(tabla.proxyCheckBounds(4, 0, 2));
+
+		
+		//esquina inferior der
+		assertFalse(tabla.proxyCheckBounds(4, 2, 1));
+		assertFalse(tabla.proxyCheckBounds(4, 2, 3));
+		assertTrue(tabla.proxyCheckBounds(4, 2, 0));
+		assertTrue(tabla.proxyCheckBounds(4, 2, 2));
+		
+		//esquina inferior izq
+		assertFalse(tabla.proxyCheckBounds(0, 2, 1));
+		assertFalse(tabla.proxyCheckBounds(0, 2, 2));
+		assertTrue(tabla.proxyCheckBounds(0, 2, 0));
+		assertTrue(tabla.proxyCheckBounds(0, 2, 3));
+		
+		
+		//centro
+		
+		assertTrue(tabla.proxyCheckBounds(2, 1, 0));
+		assertTrue(tabla.proxyCheckBounds(2, 1, 1));
+		assertTrue(tabla.proxyCheckBounds(2, 1, 2));
+		assertTrue(tabla.proxyCheckBounds(2, 1, 3));
+		
+		//EXCEPTIONS
+		
+		assertTrue(tabla.proxyCheckBounds(-1, -1, 0));
+		assertTrue(tabla.proxyCheckBounds(5, 2, 0));
+		
+	}	
+	
 	@Test
 	public void testGetState() {
 		
@@ -254,63 +366,8 @@ public class BoardTest {
 				assertTrue(mat[i][j].isMine()==testArray2[i][j]);
 			}
 		}
-	}
-		
-		//	0 = up
-//	1 = down
-//	2 = left
-//	3 = right
-	
-	@Test
-	public void testCheckBounds() {
-		
-		
-		boolean[][] testArray ={{true,false,false,false,false},
-								{false,false,true,false,false},
-								{false,false,false,false,true}};
-
-		Board tabla = new Board(testArray); 
-		//esquina superior izq
-		assertFalse(tabla.proxyCheckBounds(0, 0, 0));
-		assertFalse(tabla.proxyCheckBounds(0, 0, 2));
-		assertTrue(tabla.proxyCheckBounds(0, 0, 1));
-		assertTrue(tabla.proxyCheckBounds(0, 0, 3));
-		
-		//esquina superior der
-		assertFalse(tabla.proxyCheckBounds(4, 0, 0));
-		assertFalse(tabla.proxyCheckBounds(4, 0, 3));
-		assertTrue(tabla.proxyCheckBounds(4, 0, 1));
-		assertTrue(tabla.proxyCheckBounds(4, 0, 2));
-
-		
-		//esquina inferior der
-		assertFalse(tabla.proxyCheckBounds(4, 2, 1));
-		assertFalse(tabla.proxyCheckBounds(4, 2, 3));
-		assertTrue(tabla.proxyCheckBounds(4, 2, 0));
-		assertTrue(tabla.proxyCheckBounds(4, 2, 2));
-		
-		//esquina inferior izq
-		assertFalse(tabla.proxyCheckBounds(0, 2, 1));
-		assertFalse(tabla.proxyCheckBounds(0, 2, 2));
-		assertTrue(tabla.proxyCheckBounds(0, 2, 0));
-		assertTrue(tabla.proxyCheckBounds(0, 2, 3));
-		
-		
-		//centro
-		
-		assertTrue(tabla.proxyCheckBounds(2, 1, 0));
-		assertTrue(tabla.proxyCheckBounds(2, 1, 1));
-		assertTrue(tabla.proxyCheckBounds(2, 1, 2));
-		assertTrue(tabla.proxyCheckBounds(2, 1, 3));
-		
-		//EXCEPTIONS
-		
-		assertTrue(tabla.proxyCheckBounds(-1, -1, 0));
-		assertTrue(tabla.proxyCheckBounds(5, 2, 0));
-		
-	}	
 		
 	}
 	
 	
-	
+}
