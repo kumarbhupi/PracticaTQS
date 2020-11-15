@@ -44,9 +44,9 @@ public class BoardTest {
 		Board tabla = new Board();
 		
 		assertTrue(tabla.setFlag(0, 0));
-		assertTrue(tabla.getState(0, 0)==-2);//falta definir los valores de state correctamente
+		assertTrue(tabla.getState(0, 0)==-2);
 		assertFalse(tabla.setFlag(0, 0));
-		assertTrue(tabla.getState(0, 0)==0);//falta definir los valores de state correctamente
+		assertTrue(tabla.getState(0, 0)==0);
 		
 	}
 	
@@ -254,9 +254,63 @@ public class BoardTest {
 				assertTrue(mat[i][j].isMine()==testArray2[i][j]);
 			}
 		}
+	}
+		
+		//	0 = up
+//	1 = down
+//	2 = left
+//	3 = right
+	
+	@Test
+	public void testCheckBounds() {
+		
+		
+		boolean[][] testArray ={{true,false,false,false,false},
+								{false,false,true,false,false},
+								{false,false,false,false,true}};
+
+		Board tabla = new Board(testArray); 
+		//esquina superior izq
+		assertFalse(tabla.proxyCheckBounds(0, 0, 0));
+		assertFalse(tabla.proxyCheckBounds(0, 0, 2));
+		assertTrue(tabla.proxyCheckBounds(0, 0, 1));
+		assertTrue(tabla.proxyCheckBounds(0, 0, 3));
+		
+		//esquina superior der
+		assertFalse(tabla.proxyCheckBounds(4, 0, 0));
+		assertFalse(tabla.proxyCheckBounds(4, 0, 3));
+		assertTrue(tabla.proxyCheckBounds(4, 0, 1));
+		assertTrue(tabla.proxyCheckBounds(4, 0, 2));
+
+		
+		//esquina inferior der
+		assertFalse(tabla.proxyCheckBounds(4, 2, 1));
+		assertFalse(tabla.proxyCheckBounds(4, 2, 3));
+		assertTrue(tabla.proxyCheckBounds(4, 2, 0));
+		assertTrue(tabla.proxyCheckBounds(4, 2, 2));
+		
+		//esquina inferior izq
+		assertFalse(tabla.proxyCheckBounds(0, 2, 1));
+		assertFalse(tabla.proxyCheckBounds(0, 2, 2));
+		assertTrue(tabla.proxyCheckBounds(0, 2, 0));
+		assertTrue(tabla.proxyCheckBounds(0, 2, 3));
+		
+		
+		//centro
+		
+		assertTrue(tabla.proxyCheckBounds(2, 1, 0));
+		assertTrue(tabla.proxyCheckBounds(2, 1, 1));
+		assertTrue(tabla.proxyCheckBounds(2, 1, 2));
+		assertTrue(tabla.proxyCheckBounds(2, 1, 3));
+		
+		//EXCEPTIONS
+		
+		assertTrue(tabla.proxyCheckBounds(-1, -1, 0));
+		assertTrue(tabla.proxyCheckBounds(5, 2, 0));
+		
+	}	
 		
 	}
 	
 	
 	
-}

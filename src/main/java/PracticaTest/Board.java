@@ -105,34 +105,34 @@ public class Board {
 				
 				
 			}
-//			
-//			if (checkLeftBound) 
-//				boardMatrix[y-1][x-1];
-//			
-//			if (checkRightBound)
-//				boardMatrix[y-1][x+1];
-//			
+			/*
+			if (checkLeftBound) 
+				boardMatrix[y-1][x-1];
+			
+			if (checkRightBound)
+				boardMatrix[y-1][x+1];
+			*/
 		}
-//		
-//		boardMatrix[y][x-1];
-//		boardMatrix[y][x+1];
-//		
-//		
-//		if (checkUpBound) {
-//		
-//			boardMatrix[y+1][x];
-//			
-//			if (checkLeftBound) 
-//				boardMatrix[y+1][x-1];
-//			
-//			
-//			if (checkRightBound)
-//				boardMatrix[y+1][x+1];
-//		
-//		}
-//		
-//		uncoverNeighbours(x, y);
-//
+		/*
+		boardMatrix[y][x-1];
+		boardMatrix[y][x+1];
+		
+		
+		if (checkUpBound) {
+		
+			boardMatrix[y+1][x];
+			
+			if (checkLeftBound) 
+				boardMatrix[y+1][x-1];
+			
+			
+			if (checkRightBound)
+				boardMatrix[y+1][x+1];
+		
+		}
+		*/
+		//uncoverNeighbours(x, y);
+
 	}
 	
 	public boolean isAllUncovered() {
@@ -153,10 +153,16 @@ public class Board {
 		
 	}
 	
+	private boolean checkBounds(int x, int y, int dir) {
+        return false;
+    }
+	
 	public int getState(int x, int y) {
 		
 		return boardMatrix[y][x].getState();
 	}
+	
+	
 	
 	public void setState(int x, int y, int state) {
 		
@@ -178,6 +184,7 @@ public class Board {
 	public int proxyUncoverPosition(int x, int y) { return uncoverPosition(x, y);}	
 	public void proxyToggleBanderaByPosition(int x, int y) { setFlag(x, y);}
 	
+	public boolean proxyCheckBounds(int x, int y, int dir ) { return checkBounds(x,y,dir);}
 	
 	
 }
