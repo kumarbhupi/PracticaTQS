@@ -19,11 +19,40 @@ public class SquareTest {
 		assertTrue(8==squareTest.getState());
 	}
 
-	@Test //Test setters and getters of mine
-	public void testSquareMine() {
+	@Test //Test setters and getters of ismine
+	public void testSquareMines() {
 		Square squareTest = new Square();
 		assertTrue(false==squareTest.isMine());
 		squareTest.setMine();
 		assertTrue(true==squareTest.isMine());
+		squareTest.setMine();
+		assertTrue(true==squareTest.isMine());
 	}
+	
+	@Test //Test setters and getters of adjacentmines
+	public void testAdjacentMines() {
+		Square squareTest = new Square();
+		for(int i=0; i<=8; i++) {
+			squareTest.setAdjacentMines(i);
+			assertTrue(i==squareTest.getAdjacentMines()); 
+		}
+		
+		squareTest.setAdjacentMines(-500);
+		squareTest.setAdjacentMines(500);
+		squareTest.setAdjacentMines(-1);
+		squareTest.setAdjacentMines(9);
+		assertTrue(8==squareTest.getAdjacentMines());
+	}
+	
+	@Test //Test setters and getters of explored
+	public void testExploredMines() {
+		Square squareTest = new Square();
+		assertTrue(false==squareTest.getExplored());
+		squareTest.setExplored();
+		assertTrue(true==squareTest.getExplored());
+		squareTest.setExplored();
+		assertTrue(true==squareTest.getExplored());
+	}
+	
+	
 } 

@@ -9,9 +9,13 @@ public class GameTest {
 	public void testcheckInput() {
 		Game game= new Game();
 		boolean r;
-		r=game.checkInput("5,   5", 1);
+		r=game.checkInput("1,   1", 1);
 		assertTrue(r==true);
-		r=game.checkInput("5,   5", 1);
+		r=game.checkInput("1,   14", 1);
+		assertTrue(r==true);
+		r=game.checkInput("18,1 ", 1);
+		assertTrue(r==true);
+		r=game.checkInput("18,   14", 1);
 		assertTrue(r==true);
 		r=game.checkInput("5,,5", 1);
 		assertTrue(r==false);
@@ -19,7 +23,7 @@ public class GameTest {
 		assertTrue(r==false);
 		r=game.checkInput("5,a", 1);
 		assertTrue(r==false);
-		r=game.checkInput("1000000,5", 1);
+		r=game.checkInput("0,5", 1);
 		assertTrue(r==false);
 		r=game.checkInput(" ", 1);
 		assertTrue(r==false); 

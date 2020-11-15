@@ -11,22 +11,20 @@ public class PlayerTest {
 	@Test
 	public void testPlayer() {
 		
-		Player plyrTest = new Player();
+		Player playerTest = new Player();
 		
-		assertTrue(plyrTest.getFlagCount()==40);
-		assertFalse(plyrTest.getFlagCount()==0); 
+		assertTrue(playerTest.getFlagCount()==40);
+		assertFalse(playerTest.getFlagCount()==0); 
 		
 	}
 
 	@Test
 	public void testPlayerInt() {
+
+		Player playerTest = new Player(40);
 		
-		int mines = 40;
-		
-		Player plyrTest = new Player(mines);
-		
-		assertTrue(plyrTest.getFlagCount()==mines);
-		assertFalse(plyrTest.getFlagCount()==0);
+		assertTrue(playerTest.getFlagCount()==40);
+		assertFalse(playerTest.getFlagCount()==0);
 		
 	}
 
@@ -34,49 +32,72 @@ public class PlayerTest {
 	public void testDecreaseFlagNum() {
 		
 		
-		Player plyrTest = new Player();
+		Player playerTest = new Player();
 		
-		plyrTest.decreaseFlagNum();
-		
-		assertTrue(39==plyrTest.getFlagCount());
+		playerTest.decreaseFlagNum();
+		assertTrue(39==playerTest.getFlagCount());
+		playerTest.decreaseFlagNum();
+		assertTrue(38==playerTest.getFlagCount());
+		playerTest.decreaseFlagNum();
+		assertTrue(37==playerTest.getFlagCount());
 		
 	}
 
 	@Test
 	public void testIncreaseFlagNum() {
 		
-		Player plyrTest = new Player();
+		Player playerTest = new Player();
 		
-		plyrTest.increaseFlagNum();
+		playerTest.increaseFlagNum();
+		assertTrue(40==playerTest.getFlagCount());
 		
-		assertTrue(40==plyrTest.getFlagCount());
+		playerTest.decreaseFlagNum();
+		playerTest.decreaseFlagNum();
+		playerTest.decreaseFlagNum();
+		
+		playerTest.increaseFlagNum();
+		assertTrue(38==playerTest.getFlagCount());
+
 		
 	}
 
 	@Test
 	public void testIncreaseScore() {
 		
-		Player plyrTest = new Player();
+		Player playerTest = new Player();
 		
-		plyrTest.setScore(500);
+		playerTest.setScore(500);
 		
-		assertTrue(plyrTest.increaseScore(40)==400);
+		assertTrue(playerTest.increaseScore(40)==400);
+		assertTrue(playerTest.getScore()==900);
 		
+		playerTest.setScore(500);
 		
-		assertTrue(plyrTest.getScore()==900);
+		assertTrue(playerTest.increaseScore(10)==100);
+		assertTrue(playerTest.getScore()==600);
 		
-		plyrTest.setScore(500);
+		playerTest.setScore(500);
 		
-		assertTrue(plyrTest.increaseScore(10)==100);
-		assertTrue(plyrTest.getScore()==600);
+		playerTest.increaseScore(-50);
+		assertTrue(playerTest.getScore()==500);
 		
-		plyrTest.setScore(500);
+	}
+	
+	@Test //Test the getters and setters of score
+	public void testPlayerScore() {
+		Player playerTest = new Player();
 		
-		assertTrue(plyrTest.increaseScore(-50)==0);
-		assertTrue(plyrTest.getScore()==500);
-		
-		assertFalse(plyrTest.increaseScore(-50)==-500);
-		
-		
+		playerTest.setScore(0);
+		assertTrue(0==playerTest.getScore());
+		playerTest.setScore(1000);
+		assertTrue(1000==playerTest.getScore());
+		playerTest.setScore(2120);
+		assertTrue(2120==playerTest.getScore());
+
+		playerTest.setScore(-500000);
+		playerTest.setScore(1000000);
+		playerTest.setScore(-1);
+		playerTest.setScore(2121);
+		assertTrue(2120==playerTest.getScore());
 	}
 }
