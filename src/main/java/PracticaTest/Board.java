@@ -31,29 +31,77 @@ public class Board {
 		}
 		
 	}
-	
+
 	public void generateMineMap(int nMines) {
-		
+
 		int upperboundX = this.getLengthX()-1;
 		int upperboundY = this.getLengthY()-1;
-		int xAxis; 
-	    int yAxis;
-	    
+		int xAxis;
+		int yAxis;
+
 		Random rand = new Random();
-		
+
 		int placedMines = 0;
-		
+
 		while(placedMines != nMines) {
-			xAxis = rand.nextInt(upperboundX); 
-		    yAxis = rand.nextInt(upperboundY);
-			
+			xAxis = rand.nextInt(upperboundX);
+			yAxis = rand.nextInt(upperboundY);
+
 			if (!isMine(xAxis, yAxis)) {
 				boardMatrix[yAxis][xAxis].setMine();
 				placedMines++;
 			}
 		}
-		
+
+		for(int i=0; i < this.getLengthY();i++) {
+			for(int j=0; j < this.getLengthX();j++) {
+				boardMatrix[i][j].setAdjacentMines((getAdjacentMines(j, i)));
+			}
+		}
+
 	}
+
+	private int getAdjacentMines(int x, int y) {
+
+		int mineCounting = 0;
+
+		if (checkBounds(x, y, 0))
+			if (boardMatrix[y-1][x].isMine())
+				mineCounting++;
+
+		if (checkBounds(x, y, 2))
+			if (boardMatrix[y][x-1].isMine())
+				mineCounting++;
+
+		if (checkBounds(x, y, 3))
+			if (boardMatrix[y][x+1].isMine())
+				mineCounting++;
+
+		if (checkBounds(x, y, 1))
+			if (boardMatrix[y+1][x].isMine())
+				mineCounting++;
+
+		if (checkBounds(x, y, 0) && checkBounds(x, y, 2))
+			if (boardMatrix[y-1][x-1].isMine())
+				mineCounting++;
+
+		if (checkBounds(x, y, 0) && checkBounds(x, y, 3))
+			if (boardMatrix[y-1][x+1].isMine())
+				mineCounting++;
+
+		if (checkBounds(x, y, 1) && checkBounds(x, y, 2))
+			if (boardMatrix[y+1][x-1].isMine())
+				mineCounting++;
+
+		if (checkBounds(x, y, 1) && checkBounds(x, y, 3))
+			if (boardMatrix[y+1][x+1].isMine())
+				mineCounting++;
+
+
+		return mineCounting;
+	}
+
+
 	////////////FOR TESTING PURPOSES//////////// 
 	public void generateFromBoolMatrix(boolean[][] inputMat) {
 		
@@ -67,142 +115,249 @@ public class Board {
 			}
 		}
 		
+		for(int i=0; i < this.getLengthY();i++) {
+			for(int j=0; j < this.getLengthX();j++) {
+				boardMatrix[i][j].setAdjacentMines((getAdjacentMines(j, i)));
+			}
+		}														 
 	}
 	////////////////////////////////////////////
-	
+
 	//si peta -1
 	//si no peta, el numero de casillas que descubre
 	public int uncoverPosition(int x, int y) {
-		
+
 		//ArrayList<int[]> checkedPos = new ArrayList<>();
-		
+
 		if(boardMatrix[y][x].isMine()) {
 			boardMatrix[y][x].setState(-3);
 			return -1;
 		} else {
-			boardMatrix[y][x].setState(-1);
+			//boardMatrix[y][x].setState(-1);
+			uncoverNeighbours(x, y);
+
 			return 1;
 			//checkedPos.add(new int[] {x,y});
 			//uncoverNeighbours(x, y);
 		}
-		
 	}
-	
-		private void uncoverNeighbours(int x, int y) {
-		
+
+	private void uncoverNeighbours(int x, int y) {
+
 		int mineCounting = 0;
 		int posState;
-		
-		
-		if (boardMatrix[y][x].getState()==0) {
-			
-			boardMatrix[y][x].setState(-1);
-			
-//			if (checkBounds(x, y-1, 0)) {
-			if (checkBounds(x, y, 0)) {
-				
-				posState = boardMatrix[y-1][x].getState();
-				
-				if (boardMatrix[y-1][x].isMine())
-					mineCounting++;
-				else 
-					if ((posState==-2 || posState==0)) 
-						uncoverNeighbours(x, y-1);
-			}
-				
-//			if (checkBounds(x-1, y-1, 0) && checkBounds(x-1, y-1, 2)) {
-			if (checkBounds(x, y, 0) && checkBounds(x, y, 2)) {
-				
-				posState = boardMatrix[y-1][x-1].getState();
-				
-				if (boardMatrix[y-1][x-1].isMine())
-					mineCounting++;
-				else 
-					if ((posState==-2 || posState==0))  
-						uncoverNeighbours(x-1, y-1);
-			}
-			
-//			if (checkBounds(x+1, y-1, 0) && checkBounds(x+1, y-1, 3)) {
-			if (checkBounds(x, y, 0) && checkBounds(x, y, 3)) {
-				
-				posState = boardMatrix[y-1][x+1].getState();
-				
-				if (boardMatrix[y-1][x+1].isMine())
-					mineCounting++;
-				else 
-					if ((posState==-2 || posState==0))  
-						uncoverNeighbours(x+1, y-1);	
-			}
-//			---------------------------------------------
-//			if (checkBounds(x-1, y, 2)) {
-			if (checkBounds(x, y, 2)) {
-				
-				posState = boardMatrix[y][x-1].getState();
-				
-				if (boardMatrix[y][x-1].isMine())
-					mineCounting++;
-				else 
-					if ((posState==-2 || posState==0))  
-						uncoverNeighbours(x-1, y);
-			}
+		int contextualX, contextualY;
+		boolean isUpperCenterPossible 	= false;
 
-//			if (checkBounds(x+1, y, 3)) {
-			if (checkBounds(x, y, 3)) {
-				
-				posState = boardMatrix[y][x+1].getState();
-				
-				if (boardMatrix[y][x+1].isMine())
-					mineCounting++;
-				else 
-					if ((posState==-2 || posState==0))  
-						uncoverNeighbours(x+1, y);	
-			}
+		boolean isCenterLeftPossible 	= false;
+		boolean isCenterRightPossible 	= false;
 
-//			---------------------------------------------
-//			if (checkBounds(x, y+1, 1)) {
-			if (checkBounds(x, y, 1)) {
-				
-				posState = boardMatrix[y+1][x].getState();
-				
-				if (boardMatrix[y+1][x].isMine())
-					mineCounting++;
-				else 
-					if ((posState==-2 || posState==0))  
-						uncoverNeighbours(x, y+1);	
+		boolean isLowerCenterPossible 	= false;
+
+
+		if (boardMatrix[y][x].getState()==0 && !boardMatrix[y][x].getExplored()) {
+
+			boardMatrix[y][x].setExplored();
+
+			if (boardMatrix[y][x].getAdjacentMines()==0) {
+
+				boardMatrix[y][x].setState(-1);
+
+				contextualX = x;
+				contextualY = y-1;
+
+				if (checkBounds(x, y, 0)) {
+
+					posState = boardMatrix[contextualY][contextualX].getState();
+
+					if (boardMatrix[contextualY][contextualX].isMine())
+						mineCounting++;
+					else {
+
+						if ((posState==-2 || posState==0) && boardMatrix[contextualY][contextualX].getAdjacentMines()==0) {
+							isUpperCenterPossible = true;
+							uncoverNeighbours(contextualX, contextualY);
+						} else if (!boardMatrix[contextualY][contextualX].getExplored()) {
+							boardMatrix[contextualY][contextualX].setState(boardMatrix[contextualY][contextualX].getAdjacentMines());
+							boardMatrix[contextualY][contextualX].setExplored();
+						}
+
+					}
+
+				}
+
+
+				contextualX = x-1;
+				contextualY = y;
+
+				if (checkBounds(x, y, 2)) {
+
+					posState = boardMatrix[contextualY][contextualX].getState();
+
+					if (boardMatrix[contextualY][contextualX].isMine())
+						mineCounting++;
+					else {
+
+						if ((posState==-2 || posState==0) && boardMatrix[contextualY][contextualX].getAdjacentMines()==0) {
+							isUpperCenterPossible = true;
+							uncoverNeighbours(contextualX, contextualY);
+						} else if (!boardMatrix[contextualY][contextualX].getExplored()) {
+							boardMatrix[contextualY][contextualX].setState(boardMatrix[contextualY][contextualX].getAdjacentMines());
+							boardMatrix[contextualY][contextualX].setExplored();
+						}
+
+					}
+
+				}
+
+				contextualX = x+1;
+				contextualY = y;
+
+				if (checkBounds(x, y, 3)) {
+
+					posState = boardMatrix[contextualY][contextualX].getState();
+
+					if (boardMatrix[contextualY][contextualX].isMine())
+						mineCounting++;
+					else {
+
+						if ((posState==-2 || posState==0) && boardMatrix[contextualY][contextualX].getAdjacentMines()==0) {
+							isUpperCenterPossible = true;
+							uncoverNeighbours(contextualX, contextualY);
+						} else if (!boardMatrix[contextualY][contextualX].getExplored()) {
+							boardMatrix[contextualY][contextualX].setState(boardMatrix[contextualY][contextualX].getAdjacentMines());
+							boardMatrix[contextualY][contextualX].setExplored();
+						}
+
+					}
+
+				}
+
+
+				contextualX = x;
+				contextualY = y+1;
+
+				if (checkBounds(x, y, 1)) {
+
+					posState = boardMatrix[contextualY][contextualX].getState();
+
+					if (boardMatrix[contextualY][contextualX].isMine())
+						mineCounting++;
+					else {
+
+						if ((posState==-2 || posState==0) && boardMatrix[contextualY][contextualX].getAdjacentMines()==0) {
+							isUpperCenterPossible = true;
+							uncoverNeighbours(contextualX, contextualY);
+						} else if (!boardMatrix[contextualY][contextualX].getExplored()) {
+							boardMatrix[contextualY][contextualX].setState(boardMatrix[contextualY][contextualX].getAdjacentMines());
+							boardMatrix[contextualY][contextualX].setExplored();
+						}
+
+					}
+
+				}
+
+				contextualX = x-1;
+				contextualY = y-1;
+
+				if (checkBounds(x, y, 0) && checkBounds(x, y, 2)) {
+
+					posState = boardMatrix[contextualY][contextualX].getState();
+
+					if (boardMatrix[contextualY][contextualX].isMine())
+						mineCounting++;
+					else {
+
+						if ((posState==-2 || posState==0) && boardMatrix[contextualY][contextualX].getAdjacentMines()==0) {
+							isUpperCenterPossible = true;
+							uncoverNeighbours(contextualX, contextualY);
+						} else if (!boardMatrix[contextualY][contextualX].getExplored()) {
+							boardMatrix[contextualY][contextualX].setState(boardMatrix[contextualY][contextualX].getAdjacentMines());
+							boardMatrix[contextualY][contextualX].setExplored();
+						}
+
+
+					}
+
+				}
+
+				contextualX = x+1;
+				contextualY = y-1;
+
+				if (checkBounds(x, y, 0) && checkBounds(x, y, 3)) {
+
+					posState = boardMatrix[contextualY][contextualX].getState();
+
+					if (boardMatrix[contextualY][contextualX].isMine())
+						mineCounting++;
+					else {
+
+						if ((posState==-2 || posState==0) && boardMatrix[contextualY][contextualX].getAdjacentMines()==0) {
+							isUpperCenterPossible = true;
+							uncoverNeighbours(contextualX, contextualY);
+						} else if (!boardMatrix[contextualY][contextualX].getExplored()) {
+							boardMatrix[contextualY][contextualX].setState(boardMatrix[contextualY][contextualX].getAdjacentMines());
+							boardMatrix[contextualY][contextualX].setExplored();
+						}
+
+					}
+
+				}
+
+
+
+				contextualX = x-1;
+				contextualY = y+1;
+
+				if (checkBounds(x, y, 1) && checkBounds(x, y, 2)) {
+
+					posState = boardMatrix[contextualY][contextualX].getState();
+
+					if (boardMatrix[contextualY][contextualX].isMine())
+						mineCounting++;
+					else {
+
+						if ((posState==-2 || posState==0) && boardMatrix[contextualY][contextualX].getAdjacentMines()==0) {
+							isUpperCenterPossible = true;
+							uncoverNeighbours(contextualX, contextualY);
+						} else if (!boardMatrix[contextualY][contextualX].getExplored()) {
+							boardMatrix[contextualY][contextualX].setState(boardMatrix[contextualY][contextualX].getAdjacentMines());
+							boardMatrix[contextualY][contextualX].setExplored();
+						}
+
+					}
+
+				}
+
+				contextualX = x+1;
+				contextualY = y+1;
+
+				if (checkBounds(x, y, 1) && checkBounds(x, y, 3)) {
+
+					posState = boardMatrix[contextualY][contextualX].getState();
+
+					if (boardMatrix[contextualY][contextualX].isMine())
+						mineCounting++;
+					else {
+
+						if ((posState==-2 || posState==0) && boardMatrix[contextualY][contextualX].getAdjacentMines()==0) {
+							isUpperCenterPossible = true;
+							uncoverNeighbours(contextualX, contextualY);
+						} else if (!boardMatrix[contextualY][contextualX].getExplored()) {
+							boardMatrix[contextualY][contextualX].setState(boardMatrix[contextualY][contextualX].getAdjacentMines());
+							boardMatrix[contextualY][contextualX].setExplored();
+						}
+
+					}
+
+				}
+
 			}
-				
-//			if (checkBounds(x-1, y+1, 1) && checkBounds(x-1, y+1, 2)) {
-			if (checkBounds(x, y, 1) && checkBounds(x, y, 2)) {
-				
-				posState = boardMatrix[y+1][x-1].getState();
-				
-				if (boardMatrix[y+1][x-1].isMine())
-					mineCounting++;
-				else 
-					if ((posState==-2 || posState==0))  
-						uncoverNeighbours(x-1, y+1);	
-			}
-			
-//			if (checkBounds(x+1, y+1, 1) && checkBounds(x+1, y+1, 3)) {
-			if (checkBounds(x, y, 1) && checkBounds(x, y, 3)) {
-				
-				posState = boardMatrix[y+1][x+1].getState();
-				
-				if (boardMatrix[y+1][x+1].isMine())
-					mineCounting++;
-				else 
-					if ((posState==-2 || posState==0))  
-						uncoverNeighbours(x+1, y+1);	
-			}
-			
-			if (mineCounting>0)
-				boardMatrix[y][x].setState(mineCounting);
-			
-				
-			
-			
+			else
+				boardMatrix[y][x].setState(boardMatrix[y][x].getAdjacentMines());
+
 		}
-		
+
 	}
 	
 	
@@ -270,10 +425,10 @@ public class Board {
 	public void proxyClearBoard() { clearBoard();}
 	public void proxyGenerateMineMap(int nMines) { generateMineMap(nMines);}	
 	public int proxyUncoverPosition(int x, int y) { return uncoverPosition(x, y);}
-	public void proxyToggleBanderaByPosition(int x, int y) { setFlag(x, y);}
-
 	public boolean proxyCheckBounds (int x, int y, int dir) {return checkBounds(x, y, dir);}
-	public int proxyGetAdjacentMines(int x, int y) { return 0;/*return getAdjacentMines(x, y);*/}
+	public void proxyToggleBanderaByPosition(int x, int y) { setFlag(x, y);}
+	
+	public int proxyGetAdjacentMines(int x, int y) { return getAdjacentMines(x, y);}
 	
 	
 	

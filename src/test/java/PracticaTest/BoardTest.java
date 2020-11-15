@@ -44,9 +44,9 @@ public class BoardTest {
 		Board tabla = new Board();
 		
 		assertTrue(tabla.setFlag(0, 0));
-		assertTrue(tabla.getState(0, 0)==-2);
+		assertTrue(tabla.getState(0, 0)==-2);//falta definir los valores de state correctamente
 		assertFalse(tabla.setFlag(0, 0));
-		assertTrue(tabla.getState(0, 0)==0);
+		assertTrue(tabla.getState(0, 0)==0);//falta definir los valores de state correctamente
 		
 	}
 	
