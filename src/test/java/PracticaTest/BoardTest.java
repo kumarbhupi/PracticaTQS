@@ -149,4 +149,114 @@ public class BoardTest {
 		//assertFalse(tabla.isMine(null, null));
 	}
 	
+	
+		
+	@Test
+	public void testGetState() {
+		
+		boolean[][] testArray ={{true,false,false,false,false},
+								{false,false,true,false,false},
+								{false,false,false,false,true}};
+
+		Board tabla = new Board(testArray); 
+		
+		for(int i=0; i < tabla.getLengthY();i++)
+			for(int j=0; j < tabla.getLengthX();j++) {
+				assertTrue(tabla.getState(j, i)==0);
+				tabla.setState(j, i, 8);	
+			}
+		
+		for(int i=0; i < tabla.getLengthY();i++)
+			for(int j=0; j < tabla.getLengthX();j++) {
+				assertTrue(tabla.getState(j, i)==8);
+					
+			}
+		
+		
+		
+		//EXCEPTIONS
+		
+		//setter test 
+		tabla.setState(-1, -1, 8);
+		tabla.setState(-1, 2, 8);
+		
+		tabla.setState(5, 3, 8);
+		tabla.setState(5, 0, 8);
+		
+		
+		//getter test
+		assertTrue(tabla.getState(-1, -1)==8);
+		assertTrue(tabla.getState(-1, 2)==8);
+		
+		assertTrue(tabla.getState(5, 3)==8);
+		assertTrue(tabla.getState(5, 0)==8);
+		
+		
+	}
+	
+	@Test
+	public void testGetLengthFunctions() { // getLengthX() y getLengthY()
+		
+		boolean[][] testArray ={{true,false,false,false,false},
+								{false,false,true,false,false},
+								{false,false,false,false,true}};
+		
+		boolean[][] testArray2 ={{},
+								{},
+								{}};
+		
+		
+		Board tabla = new Board(testArray);
+		
+		assertTrue(tabla.getLengthX()==5);
+		assertTrue(tabla.getLengthY()==3);
+		
+		
+		//EXCEPTIONS
+		
+		tabla = new Board(testArray2);
+		
+//		assertTrue(tabla.getLengthX()==0);
+//		assertTrue(tabla.getLengthY()==0);
+		
+	}
+	
+	
+	@Test
+	public void testGetMatrix() {
+		
+		boolean[][] testArray ={{true,false,false,false,false},
+								{false,false,true,false,false},
+								{false,false,false,false,true}};
+		
+		Board tabla = new Board(testArray);
+		
+		Square[][] mat = tabla.getMatrix();
+		
+		for(int i=0; i < tabla.getLengthY();i++) {
+			for(int j=0; j < tabla.getLengthX();j++) {
+				assertTrue(mat[i][j].isMine()==testArray[i][j]);
+			}
+		}
+		
+		boolean[][] testArray2 ={{},
+				{},
+				{}};
+		
+		
+		//EXCEPTIONS
+		tabla = new Board(testArray2);
+		
+		mat = tabla.getMatrix();
+		
+		for(int i=0; i < tabla.getLengthY();i++) {
+			for(int j=0; j < tabla.getLengthX();j++) {
+				assertTrue(mat[i][j].isMine()==testArray2[i][j]);
+			}
+		}
+		
+	}
+	
+	
+	
 }

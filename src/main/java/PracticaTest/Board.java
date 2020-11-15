@@ -86,11 +86,53 @@ public class Board {
 			//uncoverNeighbours(x, y);
 		}
 		
-		// tal vez el número de casillas para luego usarlo en la puntuación?
 	}
 	
 	private void uncoverNeighbours(int x, int y) {
 
+		int mineCounting = 0;
+		
+		boolean checkLeftBound 	= x>0; 
+		boolean checkRightBound = x<getLengthX()-1;
+		boolean checkUpBound 	= y>0;
+		boolean checkDownBound 	= y<getLengthY()-1;
+			
+		if (checkUpBound) {
+			
+			if (boardMatrix[y-1][x].isMine()) {
+				mineCounting++;
+			} else {
+				
+				
+			}
+//			
+//			if (checkLeftBound) 
+//				boardMatrix[y-1][x-1];
+//			
+//			if (checkRightBound)
+//				boardMatrix[y-1][x+1];
+//			
+		}
+//		
+//		boardMatrix[y][x-1];
+//		boardMatrix[y][x+1];
+//		
+//		
+//		if (checkUpBound) {
+//		
+//			boardMatrix[y+1][x];
+//			
+//			if (checkLeftBound) 
+//				boardMatrix[y+1][x-1];
+//			
+//			
+//			if (checkRightBound)
+//				boardMatrix[y+1][x+1];
+//		
+//		}
+//		
+//		uncoverNeighbours(x, y);
+//
 	}
 	
 	public boolean isAllUncovered() {
