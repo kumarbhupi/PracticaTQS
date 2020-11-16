@@ -18,19 +18,16 @@ public class Square {
 		this.explored = false;
 		this.state=0;
 		this.adjacent=0;
-	}
+	} 
 	
 	public void setMine() {
 		this.mine=true;
 	}
 	
 	public void setState(int s) {
-	    try {
-	    	if(s>=-3 && s<=8) {
-	    		this.state=s;	    	
-	    	}
-	    }catch(Exception e) {
-	    	throw new IllegalArgumentException("Input state must be between -3 and 8: " + s);
+	
+	    if(s>=-3 && s<=8) {
+	    	this.state=s;	    	
 	    }
 	}
 	
@@ -49,13 +46,9 @@ public class Square {
 	
 	public void setAdjacentMines(int nAdjMines) {
 
-	    try {
-	    	if(nAdjMines>=0 && nAdjMines<=8) {
-	    		this.adjacent=nAdjMines;	    	
-	    	}
-	    }catch(Exception e) {
-	    	throw new IllegalArgumentException("Input adjacent must be between 0 and 8: " + nAdjMines);
-	    }
+	    if(nAdjMines>=0 && nAdjMines<=8) {
+	   		this.adjacent=nAdjMines;	    	
+	   	}
 	}
 	
 	public void setExplored() {

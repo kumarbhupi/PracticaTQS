@@ -15,7 +15,7 @@ public class PlayerTest {
 		
 		assertTrue(playerTest.getFlagCount()==40);
 		assertFalse(playerTest.getFlagCount()==0); 
-		
+		 
 	}
 
 	@Test
@@ -40,6 +40,14 @@ public class PlayerTest {
 		assertTrue(38==playerTest.getFlagCount());
 		playerTest.decreaseFlagNum();
 		assertTrue(37==playerTest.getFlagCount());
+		
+		for(int i=0;i<37;i++) {
+			playerTest.decreaseFlagNum();
+		}
+		
+		assertTrue(0==playerTest.getFlagCount());
+		
+		
 		
 	}
 
