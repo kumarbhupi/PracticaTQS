@@ -9,6 +9,9 @@ public class BoardTest {
 	@Test
 	public void testClearBoard() {
 		Board tabla = new Board();
+		
+		tabla.generateMineMap(40);
+		
 		tabla.proxyClearBoard();
 		
 		assertTrue(!tabla.isMine(0, 0));
