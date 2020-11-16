@@ -52,8 +52,8 @@ public class Game {
 		}
 		return r;
 	}
-
-	public static void main(String[] args) {
+	
+	public static void start() {
 		player= new Player();
 		board = new Board();
 		visuals = new BoardVisuals();
@@ -64,7 +64,7 @@ public class Game {
 		String pos;
 		String action;
 
-		System.out.println("------------------------------ BIENVENIDO AL BUSCAMINAS ! ----------------------------------------------");
+		System.out.println("------------------------------ BIENVENIDO AL BUSCAMINAS ! ----------------------------------------------"); 
 
 		System.out.println("Este es un juego con graficos basados en consola, por lo que necesitara usar su teclado.\n"
 				+ "Primeramente debera seleccionar que casilla desea modificar para a continuacion decidir que hacer con ella.\n"
@@ -120,4 +120,11 @@ public class Game {
 		}
 		while ( itsPossibleToPlay== true );
 	}
+	
+
+	public static void main(String[] args) {
+		start();
+		
+	}
+
 }
