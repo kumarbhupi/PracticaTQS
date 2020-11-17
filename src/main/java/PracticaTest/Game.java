@@ -53,7 +53,9 @@ public class Game {
 		return r;
 	}
 	
-	public static void start() {
+
+	public static void main(String[] args) {
+		
 		player= new Player();
 		board = new Board();
 		visuals = new BoardVisuals();
@@ -122,9 +124,5 @@ public class Game {
 	}
 	
 
-	public static void main(String[] args) {
-		start();
-		
-	}
 
 }
