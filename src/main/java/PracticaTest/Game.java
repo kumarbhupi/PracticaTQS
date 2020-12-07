@@ -10,15 +10,38 @@ public class Game {
 	 * state->[1 or 2 or 3] tells us if the square is cover(1) uncover(2) or with a flag(3). Default: cover.
 	 * adjacent ->[int] tells us how many adjacent mines there are. Default: 0.*/ //CAMBIAR EL COMENTARIO!
 
-	static Player player;
-	static Board board;
-	static BoardVisuals visuals;
-
+	private static Player player;
+	private static Board board;
+	private static BoardVisuals visuals;
+	private static inputIO inout;
 	
 	static int inputX, inputY;
+	//constructor para los mock
 	
 	public Game() {
-
+		this.mainFlux();
+	}
+	
+	public Game(Player p, Board b, inputIO io) {
+		this.setMockInOut(io);
+		this.setMockBoard(b);
+		this.setMockInOut(io);
+	}
+	
+	//setter del mock object
+	public void setMockInOut(inputIO io)
+	{
+		this.inout = io;
+	}
+	
+	public void setMockBoard(Board b)
+	{
+		this.board = b;
+	}
+	
+	public void setMockPlayer(Player p)
+	{
+		this.player = p;
 	}
 
 	public static boolean checkInput(String input, int t) {
@@ -54,7 +77,7 @@ public class Game {
 	}
 	
 
-	public static void main(String[] args) {
+	private void mainFlux() {
 		
 		player= new Player();
 		board = new Board();
@@ -79,6 +102,7 @@ public class Game {
 		do {
 			System.out.println("Introduce la casilla a destapar. [En formato coordenadas] -> x,y: ");
 			pos = reader.nextLine();  //HAY QUE COMPROVAR QUE EL VALOR SEA FACTIBLE. CON VALOR ME REFIERO AL INPUT ENTERO O MAS ADELANTE AL PRIMER Y TERCER CHAR
+			pos = inout.getKeyboardInput();
 			if (checkInput(pos, 1)) {
 				System.out.println("Que desea hacer con esta casilla? [Formato]-> F/D: ");
 				action = reader.nextLine(); //APLICAR FUNCION COMPROBADORA Y QUE EXTRAIGA EL INT
@@ -126,3 +150,4 @@ public class Game {
 
 
 }
+
