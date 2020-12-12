@@ -6,9 +6,7 @@ public interface inputIO {
 
 	Scanner reader = new Scanner(System.in);
 	
-	private String getKeyboardInput() {
-		return reader.nextLine(); 
-	}
+	public String getKeyboardInput();
 	
 
 }
