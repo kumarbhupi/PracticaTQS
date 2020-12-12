@@ -36,6 +36,18 @@ public class Game {
 		this.mainFlux();
 	}
 	
+	public Game(boolean start) {
+		player= new Player();
+		board = new Board();
+		visuals = new BoardVisuals();
+		inout = new InputUser();
+		
+		board.generateMineMap(40);
+		if (start)
+			this.mainFlux();
+	}
+	
+	
 	//setter del mock object
 	public void setMockInOut(inputIO io)
 	{

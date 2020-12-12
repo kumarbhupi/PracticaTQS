@@ -7,7 +7,7 @@ import org.junit.Test;
 public class GameTest {
 	@Test //Tests the function that checks the input
 	public void testcheckInput() {
-		Game game= new Game();
+		Game game= new Game(false);
 		boolean r;
 		r=game.checkInput("1,   1", 1);
 		assertTrue(r==true);
