@@ -1,51 +1,65 @@
 package PracticaTest;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class CsvReader {
-  private String filePath;
-  public final static String CSV_SEPARATOR = ",";
-
-  public CsvReader(String filePath) {
-    this.filePath = filePath;
-  }
+  public final static String CSV_SEPARATOR = ";";
 
 
-  public ArrayList<String> csvToStrList() {
+  private ArrayList<String[]> csvToStrList(String filePath) {
     BufferedReader br;
-    ArrayList<String> values = new ArrayList<String>();
-    String line = "";
-
+    ArrayList<String[]> values = new ArrayList<>();
+    String line;
+    String[] splitValues;
     try {
-      br = new BufferedReader(new FileReader(this.filePath));
-      while((line = br.readLine()) != null) {
-        String[] splittedLine = line.split(CSV_SEPARATOR);
-        values.add(splittedLine[0]);
-        values.add(splittedLine[1]);
+      br = new BufferedReader(new FileReader(filePath));
+
+      while ((line = br.readLine()) != null) {
+        splitValues = line.split(CSV_SEPARATOR);
+        values.add(splitValues);
       }
       br.close();
-    }catch(IOException ex) {
+    } catch (IOException ex) {
       ex.printStackTrace();
-      return new ArrayList<String>();
+      return new ArrayList<>();
     }
     return values;
   }
 
-  public String[] getCsvValues() {
-    ArrayList<String> csvValuesList = csvToStrList();
 
-    String[] csvValuesArray = new String[csvValuesList.size()];
+  public String[] getCsvGame(String filePath) {
+    ArrayList<String[]> csvValuesList = csvToStrList(filePath);
 
-    for (int i = 0; i < csvValuesArray.length; i++) {
-      csvValuesArray[i] = csvValuesList.get(i);
+    String[] csvValuesArray = new String[csvValuesList.size()*csvValuesList.get(0).length];
+    String[] values;
+
+    for (int i = 0; i < csvValuesList.size(); i++) {
+      values= csvValuesList.get(i);
+      System.arraycopy(values, 0, csvValuesArray, i * values.length, values.length);
     }
 
-
-
     return csvValuesArray;
+  }
+
+  public int[][] getCsvResult(String filePath) {
+    ArrayList<String[]> csvValuesList = csvToStrList(filePath);
+    String[][] csvResult = new String[csvValuesList.size()][csvValuesList.get(0).length];
+    for (int i = 0; i < csvValuesList.size(); i++) {
+      csvResult[i] = csvValuesList.get(i);
+    }
+    int [][] csvIntResult = new int[csvResult.length][csvResult[0].length];
+
+    for (int i = 0; i < csvResult.length; i++) {
+      for (int j = 0; j < csvResult[i].length; j++) {
+        csvIntResult[i][j] = Integer.parseInt(csvResult[i][j]);
+      }
+    }
+    return csvIntResult;
   }
 }
